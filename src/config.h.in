@@ -1,0 +1,9 @@
+// Generated from config.h.in
+
+#define PACKAGE						"@PACKAGE@"
+#define PACKAGE_VERSION 			"@VERSION@"
+#define PACKAGE_STRING 				"@PACKAGE@ @VERSION@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define GETTEXT_PACKAGE				"@PACKAGE@"
+#define LOCALEDIR 					"@LOCALEDIR@"
+
