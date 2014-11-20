@@ -1,0 +1,11 @@
+// Generated from config.h.in
+
+#define PACKAGE						"@PROJECT_NAME@"
+#define PACKAGE_VERSION 			"@PROJECT_VERSION@"
+#define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define GETTEXT_PACKAGE				"@PROJECT_NAME@"
+#define LOCALEDIR 					"@LOCALEDIR@"
+
+#define UI_PATH						"@LOCALEDIR@/@PROJECT_NAME@.builder"
+#define ICON_PATH					"@LOCALEDIR@/@PROJECT_NAME@.png"
