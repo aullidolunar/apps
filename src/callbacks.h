@@ -13,11 +13,17 @@
 
 typedef struct {
 	GtkWidget *toplevel;
+	GtkWidget *child2;
 	GtkWidget *terminal;
 	GtkWidget *scroll1;
 	GtkWidget *combo1;
+	GtkWidget *url_text;
+	GtkWidget *output_dir;
+	GtkWidget *add_button;
+	GtkWidget *ok_button;
+	GtkWidget *check1;
+	GtkListStore *model_combo;
+	gint combo_pos;
 } DataInfo, *LPDATAINFO;
-
-void on_window1_destroy(GtkWidget *, LPDATAINFO);
 
 #endif

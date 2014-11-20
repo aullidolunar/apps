@@ -1,3 +1,2 @@
-mtc 1.0
+gtk2-youtubedl 1.0
 
-you need cmake. To compile my apps. Have a nice day

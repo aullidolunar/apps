@@ -7,6 +7,18 @@ project (gtk2-youtubedl VERSION "1.0" LANGUAGES C)
 set (AUTHOR "Joel Almeida García")
 set (EMAIL "aullidolunar@gmail.com")
 
+# find ffmpeg
+find_program(F_PATH ffmpeg)
+if (NOT F_PATH)
+	message (FATAL_ERROR "ffmpeg not found (required)")
+endif (NOT F_PATH)
+
+# find youtubedl
+find_program(Y_PATH youtube-dl)
+if (NOT Y_PATH)
+	message (FATAL_ERROR "youtube-dl not found (required)")
+endif (NOT Y_PATH)
+
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
 	message ("*** Compiling in debug mode")
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g3 -O0")
@@ -17,10 +29,6 @@ else (${CMAKE_BUILD_TYPE} NOT MATCHES "Debug")
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s")
 	set (RES_DIR "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}")
 endif (${CMAKE_BUILD_TYPE} MATCHES "Debug")
-
-set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -export-dynamic")
-
-set (LOCALEDIR ${RES_DIR})
 
 configure_file (
 	"${PROJECT_SOURCE_DIR}/src/config.h.in"

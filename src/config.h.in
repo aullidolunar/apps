@@ -5,7 +5,11 @@
 #define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
 #define PACKAGE_BUGREPORT			"@EMAIL@"
 #define GETTEXT_PACKAGE				"@PROJECT_NAME@"
-#define LOCALEDIR 					"@LOCALEDIR@"
+#define LOCALEDIR 					"@RES_DIR@/locale"
+#define RES_DIR						"@RES_DIR@"
 
-#define UI_PATH						"@LOCALEDIR@/@PROJECT_NAME@.builder"
-#define ICON_PATH					"@LOCALEDIR@/@PROJECT_NAME@.png"
+#define F_PATH						"@F_PATH@"
+#define Y_PATH						"@Y_PATH@"
+
+#define UI_PATH						"@RES_DIR@/@PROJECT_NAME@.builder"
+#define ICON_PATH					"@RES_DIR@/@PROJECT_NAME@.png"

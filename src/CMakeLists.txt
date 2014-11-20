@@ -18,7 +18,6 @@ if (NOT VTE2_FOUND)
 	message(FATAL_ERROR "You don't seem to have vte (version for gtk+-2.0) development libraries installed")
 endif (NOT VTE2_FOUND)
 
-
 # sources
 set (_SOURCES
 	callbacks.c

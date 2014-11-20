@@ -49,6 +49,7 @@
                     <property name="secondary_icon_activatable">False</property>
                     <property name="primary_icon_sensitive">True</property>
                     <property name="secondary_icon_sensitive">True</property>
+                    <signal name="changed" handler="on_entry1_changed" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -64,6 +65,7 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_button1_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -105,6 +107,7 @@
                       <item>3GP</item>
                       <item>Facebook</item>
                     </items>
+                    <signal name="changed" handler="on_comboboxtext1_changed" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -126,6 +129,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="draw_indicator">True</property>
+                <signal name="toggled" handler="on_checkbutton1_toggled" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
