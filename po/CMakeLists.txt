@@ -41,12 +41,17 @@ COMMAND ${XGETTEXT} -o "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot" --no-wrap --c
 )
 
 set (MO_FILES)
+set (LOCALE_DIRS)
 file (GLOB PO_FILES *.po)
 foreach(_poFile ${PO_FILES})
 	get_filename_component(_lang ${_poFile} NAME_WE)
 	if (NOT EXISTS "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
-		file (MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
-		message ("Generating ${_lang} directory")
+		add_custom_command (
+			OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
+			COMMAND ${CMAKE_COMMAND} -E make_directory "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
+			COMMENT "Preparing locale: ${_lang} ..."
+		)
+		set (LOCALE_DIRS ${LOCALE_DIRS} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
 	endif ()
 	add_custom_command(
 		OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
@@ -57,5 +62,5 @@ foreach(_poFile ${PO_FILES})
 	install (FILES "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo" DESTINATION "share/${PROJECT_NAME}/locale/${_lang}/LC_MESSAGES")
 endforeach(_poFile ${PO_FILES})
 
-add_custom_target (locales DEPENDS ${MO_FILES})
-add_dependencies(${PROJECT_NAME} locales)
+add_custom_target (locales DEPENDS ${LOCALE_DIRS} ${MO_FILES})
+add_dependencies (${PROJECT_NAME} locales)
