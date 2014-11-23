@@ -1,4 +1,4 @@
-# locale/CMakeLists.txt
+# po/CMakeLists.txt
 
 find_program (XGETTEXT xgettext)
 if (NOT XGETTEXT)
