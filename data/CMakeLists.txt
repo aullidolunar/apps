@@ -7,12 +7,12 @@ endif (NOT INTLTOOLMERGE)
 
 configure_file (
 	"${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.desktop.in.in"
-	"${PROJECT_NAME}.desktop.in"
+	"${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in"
 )
 
 add_custom_command(
 	OUTPUT ${PROJECT_NAME}.desktop
-	COMMAND ${INTLTOOLMERGE} -d -u ../po ${PROJECT_NAME}.desktop.in ${PROJECT_NAME}.desktop
+	COMMAND ${INTLTOOLMERGE} -d -u ../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop
 	COMMENT "Creating desktop file"
 )
 

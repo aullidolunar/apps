@@ -13,12 +13,23 @@ GPid spawned_to_terminal (VteTerminal *vteterminal, const gchar *cmd_line, const
 	return _pid;
 }
 
+gint oops_dialog (GtkWindow *parent) {
+	GtkWidget *m;
+	gint value;
+	m = gtk_message_dialog_new_with_markup (parent, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO, "<b>%s:</b>", _("A youtube-dl process is running"));
+	gtk_window_set_title (GTK_WINDOW (m), gtk_window_get_title (parent));
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (m), "%s", _("Exit the application will generate a corrupted file, do you want exit anyway?"));
+	value = gtk_dialog_run (GTK_DIALOG (m));
+	gtk_widget_destroy (m);
+	return value;
+}
+
 void toggle_sensitive (GtkWidget *child) {
 	gboolean state = gtk_widget_get_sensitive (child);
 	gtk_widget_set_sensitive (child, !state);
 }
 
-void on_window1_destroy(GtkWidget *object, LPDATAINFO data) {
+void on_window1_destroy(GtkWindow *widget, LPDATAINFO data) {
 	gtk_main_quit();
 }
 
@@ -70,7 +81,11 @@ void on_button2_clicked (GtkButton *button, LPDATAINFO data) {
 }
 
 void on_button3_clicked (GtkButton *button, LPDATAINFO data) {
-	gtk_widget_destroy (data->toplevel);
+	gboolean response;
+	g_signal_emit_by_name (data->toplevel, "delete-event", data, &response);
+	if (!response) {
+		gtk_widget_destroy (data->toplevel);
+	}
 }
 
 void on_button4_clicked (GtkButton *button, LPDATAINFO data) {
@@ -105,8 +120,9 @@ void child_exited (VteTerminal *vteterminal, LPDATAINFO data) {
 	gtk_list_store_set (data->model_combo, &iter, 0, pixbuf, -1);
 	g_free (img);
 	g_object_unref (pixbuf);
-	data->pid = 0;
 	data->pos++;
+	g_spawn_close_pid (data->pid);
+	data->pid = -1;
 	if (data->pos < data->total) {
 		gchar *url;
 		GtkTreeIter iter;
@@ -119,4 +135,17 @@ void child_exited (VteTerminal *vteterminal, LPDATAINFO data) {
 		g_string_free (data->_str, TRUE);
 		data->pos = 0;
 	}
+}
+
+gboolean on_window1_delete_event (GtkWindow *widget, GdkEvent *event, LPDATAINFO data) {
+	if (data->pid > 0) {
+		gint response;
+		response = oops_dialog (widget);
+		if (response != GTK_RESPONSE_YES) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	return FALSE;
 }

@@ -1,6 +1,11 @@
 #include "callbacks.h"
 
 int main (int argc, char *argv[]) {
+	// locale stuff
+	bind_textdomain_codeset (PACKAGE, "UTF-8");
+	bindtextdomain (PACKAGE, LOCALEDIR);
+	textdomain (PACKAGE);
+	setlocale (LC_ALL, "");
 	// test builder file
 	if (g_file_test (UI_PATH, G_FILE_TEST_IS_REGULAR)) {
 		GtkBuilder *builder;
@@ -11,7 +16,7 @@ int main (int argc, char *argv[]) {
 		ptr->combo_pos = 0;
 		ptr->total = 0;
 		ptr->pos = 0;
-		ptr->pid = 0;
+		ptr->pid = -1;
 		gtk_builder_add_from_file (builder, UI_PATH, NULL);
 		ptr->toplevel = GTK_WIDGET (gtk_builder_get_object (builder, "window1"));
 		ptr->scroll1 = GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow1"));
@@ -37,6 +42,10 @@ int main (int argc, char *argv[]) {
 		gtk_combo_box_set_active (GTK_COMBO_BOX (ptr->combo1), ptr->combo_pos);
 		gtk_widget_show_all (ptr->toplevel);
 		gtk_main ();
+		if (ptr->pid > 0) {
+			g_spawn_close_pid (ptr->pid);
+			g_string_free (ptr->_str, TRUE);
+		}
 		g_slice_free (DataInfo, ptr);
 		return 0;
 	}

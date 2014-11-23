@@ -14,6 +14,7 @@
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <signal name="destroy" handler="on_window1_destroy" swapped="no"/>
+    <signal name="delete-event" handler="on_window1_delete_event" swapped="no"/>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>

@@ -23,11 +23,13 @@ if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
 	message ("*** Compiling in debug mode")
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g3 -O0")
 	set (RES_DIR "${PROJECT_SOURCE_DIR}/data")
+	set (LOCALEDIR "${PROJECT_BINARY_DIR}/locale")
 else (${CMAKE_BUILD_TYPE} NOT MATCHES "Debug")
 	message ("*** Compiling in release mode")
 	set (CMAKE_BUILD_TYPE "Release")
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s")
 	set (RES_DIR "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}")
+	set (LOCALEDIR "${RES_DIR}/locale")
 endif (${CMAKE_BUILD_TYPE} MATCHES "Debug")
 
 configure_file (
@@ -38,7 +40,7 @@ add_definitions (-DHAVE_CONFIG_H)
 
 add_subdirectory (src)
 add_subdirectory (data)
-# add_subdirectory (po)
+add_subdirectory (po)
 
 add_custom_target (run
 	COMMAND src/${PROJECT_NAME}

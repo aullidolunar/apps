@@ -1,11 +1,11 @@
-// Generated from config.h.in
+// Generated from config.h.in using cmake
 
 #define PACKAGE						"@PROJECT_NAME@"
 #define PACKAGE_VERSION 			"@PROJECT_VERSION@"
 #define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
 #define PACKAGE_BUGREPORT			"@EMAIL@"
 #define GETTEXT_PACKAGE				"@PROJECT_NAME@"
-#define LOCALEDIR 					"@RES_DIR@/locale"
+#define LOCALEDIR 					"@LOCALEDIR@"
 #define RES_DIR						"@RES_DIR@"
 
 #define F_PATH						"@F_PATH@"
