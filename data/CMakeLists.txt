@@ -10,13 +10,14 @@ configure_file (
 	"${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in"
 )
 
+set (DESKTOP_FILE "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop")
 add_custom_command(
-	OUTPUT ${PROJECT_NAME}.desktop
-	COMMAND ${INTLTOOLMERGE} -d -u ../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop
+	OUTPUT "${DESKTOP_FILE}"
+	COMMAND ${INTLTOOLMERGE} -d -u ../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${DESKTOP_FILE}
 	COMMENT "Creating desktop file"
 )
 
-add_custom_target (desktopfile DEPENDS ${PROJECT_NAME}.desktop)
+add_custom_target (desktopfile DEPENDS ${DESKTOP_FILE})
 add_dependencies (${PROJECT_NAME} desktopfile)
 
 install (FILES "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.builder" DESTINATION "share/${PROJECT_NAME}")
@@ -24,4 +25,4 @@ install (FILES "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.png" DESTINATION "sha
 install (FILES "${PROJECT_SOURCE_DIR}/data/download.png" DESTINATION "share/${PROJECT_NAME}")
 install (FILES "${PROJECT_SOURCE_DIR}/data/error.png" DESTINATION "share/${PROJECT_NAME}")
 install (FILES "${PROJECT_SOURCE_DIR}/data/wait.png" DESTINATION "share/${PROJECT_NAME}")
-install (FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION "share/applications")
+install (FILES "${DESKTOP_FILE}" DESTINATION "share/applications")
