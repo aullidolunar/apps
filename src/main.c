@@ -1,11 +1,23 @@
 #include "callbacks.h"
 
 int main (int argc, char *argv[]) {
+	GOptionContext *context;
+	gint audio;
+	GOptionEntry entries[] = {
+		{"audio", 'a', 0, G_OPTION_ARG_INT, &audio, _("Change audio bitrate"), _("number")},
+		{NULL}
+	};
 	// locale stuff
 	bind_textdomain_codeset (PACKAGE, "UTF-8");
 	bindtextdomain (PACKAGE, LOCALEDIR);
 	textdomain (PACKAGE);
 	setlocale (LC_ALL, "");
+	// parse command line
+	context = g_option_context_new (PACKAGE_STRING);
+	g_option_context_add_main_entries (context, entries, NULL);
+	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+	g_option_context_parse (context, &argc, &argv, NULL);
+	g_option_context_free (context);
 	// test builder file
 	if (g_file_test (UI_PATH, G_FILE_TEST_IS_REGULAR)) {
 		GtkBuilder *builder;
