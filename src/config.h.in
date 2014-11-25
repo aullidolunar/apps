@@ -7,6 +7,7 @@
 #define LOCALEDIR 					"@LOCALEDIR@"
 #define RES_DIR						"@RES_DIR@"
 
+#define PREFIX						"@CMAKE_INSTALL_PREFIX@"
 #define F_PATH						"@F_PATH@"
 #define Y_PATH						"@Y_PATH@"
 

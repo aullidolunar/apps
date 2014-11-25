@@ -1,11 +1,14 @@
 #include "callbacks.h"
 
+enum { FORMAT_MP3, FORMAT_VIDEO, FORMAT_3GP, FORMAT_FACEBOOK };
+
 GPid spawned_to_terminal (VteTerminal *vteterminal, const gchar *cmd_line, const gchar *url, const gchar *output_dir) {
 	GString *tmp;
 	GPid _pid;
 	gchar **cmds;
 	tmp = g_string_new (cmd_line);
 	g_string_append (tmp, url);
+	g_print ("Executed: %s\n", tmp->str);
 	g_shell_parse_argv (tmp->str, NULL, &cmds, NULL);
 	_pid = vte_terminal_fork_command_full (vteterminal, VTE_PTY_DEFAULT, output_dir, cmds, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
 	g_string_free (tmp, TRUE);
@@ -91,17 +94,45 @@ void on_button3_clicked (GtkButton *button, LPDATAINFO data) {
 void on_button4_clicked (GtkButton *button, LPDATAINFO data) {
 	data->total = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (data->model_combo), NULL);
 	if (data->total) {
+		gchar *poop;
 		gchar *url;
 		GtkTreeIter iter;
 		toggle_sensitive (data->child1);
 		gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (data->model_combo), &iter, NULL, data->pos);
 		gtk_tree_model_get (GTK_TREE_MODEL (data->model_combo), &iter, 1, &url, -1);
-		data->_str = g_string_new (params[data->combo_pos]);
+		data->_str = g_string_new (Y_PATH);
+		switch (data->pos) {
+			case FORMAT_MP3:
+			{
+				poop = g_strdup_printf (" -f 17 --extract-audio --audio-format mp3 --audio-quality %ik ", data->audio_bit);
+				g_string_append (data->_str, poop);
+				break;
+			}
+			case FORMAT_VIDEO:
+			{
+				poop = g_strdup_printf ((data->video_format == -1) ? " -f best " : "-f %i ",  data->video_format);
+				g_string_append (data->_str, poop);
+				break;
+			}
+			case FORMAT_3GP:
+			{
+				poop = g_strdup_printf (" -f %i ", data->video_format);
+				g_string_append (data->_str, poop);
+				break;
+			}
+			case FORMAT_FACEBOOK:
+			{
+				// no options available
+				break;
+			}
+		}
+		g_free (poop);
 		if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (data->check1))) {
-			g_string_append (data->_str, "--username");
+			g_string_append (data->_str, "-u ");
 			g_string_append (data->_str, gtk_entry_get_text (GTK_ENTRY (data->user_text)));
-			g_string_append (data->_str, "--password");
+			g_string_append (data->_str, " -p \"");
 			g_string_append (data->_str, gtk_entry_get_text (GTK_ENTRY (data->pass_text)));
+			g_string_append (data->_str, "\" "); // we need space to avoid string concatenation with url
 		}
 		data->pid = spawned_to_terminal (VTE_TERMINAL(data->terminal), data->_str->str, url, gtk_entry_get_text (GTK_ENTRY (data->output_dir)));
 		g_free (url);

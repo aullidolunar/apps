@@ -29,19 +29,14 @@ typedef struct {
 	gint combo_pos;
 	gint total;
 	gint pos;
+	gint audio_bit;
+	gint video_format;
 	gchar *user;
 	gchar *pass;
 	GPid pid;
 	GString *_str;
 } DataInfo, *LPDATAINFO;
 
-static const gchararray params[] = {
-	Y_PATH " -f 17 --extract-audio --audio-format mp3 --audio-quality 128k ",
-	Y_PATH " -f best ",
-	Y_PATH " -f 17 ",
-	Y_PATH " "
-};
-	
 void child_exited (VteTerminal *, LPDATAINFO);
 
 #endif
