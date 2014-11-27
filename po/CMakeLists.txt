@@ -30,7 +30,7 @@ COMMAND ${MSGINIT} --no-translator --no-wrap -i "${PROJECT_BINARY_DIR}/${PROJECT
 )
 
 add_custom_target(update-po
-COMMAND ${MSGMERGE} --update --no-wrap -N "${PROJECT_SOURCE_DIR}/po/es.po" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot"
+COMMAND ${MSGMERGE} --update -N --no-wrap "${PROJECT_SOURCE_DIR}/po/es.po" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot"
 )
 
 add_custom_target(create-pot
@@ -49,14 +49,14 @@ foreach(_poFile ${PO_FILES})
 		add_custom_command (
 			OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
 			COMMAND ${CMAKE_COMMAND} -E make_directory "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
-			COMMENT "Preparing locale: ${_lang} ..."
+			COMMENT "Reading locale ${_lang}"
 		)
 		set (LOCALE_DIRS ${LOCALE_DIRS} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
 	endif ()
 	add_custom_command(
 		OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
 		COMMAND ${MSGFMT} ${_poFile} -o "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
-		COMMENT "Building locale: ${_lang}"
+		COMMENT "Building ${_lang} translation"
 	)
 	set (MO_FILES ${MO_FILES} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo")
 	install (FILES "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo" DESTINATION "share/${PROJECT_NAME}/locale/${_lang}/LC_MESSAGES")
