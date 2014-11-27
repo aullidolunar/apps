@@ -9,7 +9,7 @@ int main (int argc, char *argv[]) {
 	GOptionEntry entries[] = {
 		{"audio", 'a', 0, G_OPTION_ARG_INT, &audio, _("set audio bitrate in MP3 option (default is 128)"), _("number")},
 		{"video", 'v', 0, G_OPTION_ARG_INT, &video, _("set download video format in VIDEO and 3GP options (defaults are -1 for best and 17 respectly)"), _("string")},
-		{"directories", 'd', 0, G_OPTION_ARG_NONE, &dirs, _("display directory paths"), NULL},
+		{"dirs", 'd', 0, G_OPTION_ARG_NONE, &dirs, _("display directory paths"), NULL},
 		{NULL}
 	};
 	// locale stuff
