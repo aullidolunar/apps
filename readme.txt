@@ -1,3 +1,3 @@
-mtc 1.0
+galarm2 1.0
 
-you need cmake. To compile my apps. Have a nice day
+Comingsoon stuff here

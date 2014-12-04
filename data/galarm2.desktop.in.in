@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Version=1.0
+Name=@PACKAGE@
+_Comment=GTK+-2.0 alarm utility
+Exec=@PACKAGE@
+Icon=@ICON_PATH@
+Terminal=false
+Categories=Utility;
