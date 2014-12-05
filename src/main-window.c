@@ -25,11 +25,9 @@ void button_play_clicked (GtkButton *w, LPAPPWIDGETS p) {
 		g_source_remove (p->source_id);
 		p->source_id = 0;
 	}
-#ifdef WITH_LIBNOTIFY
 	if (!p->_notify) {
-		notify_popup (p->notification, state);
+		notify_popup (p, state);
 	}
-#endif	
 	update_button_helper (GTK_WIDGET (w), event);
 	gtk_widget_set_sensitive (p->notebook, !state);
 }

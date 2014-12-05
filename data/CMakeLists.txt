@@ -1,6 +1,9 @@
 # data/CMakeLists.txt
 
-if (EXISTS "${PROJECT_SOURCE_DIR}/po")
+file (GLOB PO_FILES "${PROJECT_SOURCE_DIR}/po/*.po")
+list (LENGTH ${PO_FILES} PO_FILES_LEN)
+
+if (EXISTS "${PROJECT_SOURCE_DIR}/po" AND ${PO_FILES_LEN} GREATER 0)
 	find_program(INTLTOOLMERGE intltool-merge)
 	
 	if (NOT INTLTOOLMERGE)

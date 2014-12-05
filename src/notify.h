@@ -1,13 +1,10 @@
 #ifndef NOTIFY_H_INCLUDED
 #define NOTIFY_H_INCLUDED
 
-#ifdef WITH_LIBNOTIFY
-#include <libnotify/notify.h>
 #include "main.h"
 
-NotifyNotification* notify_up ();
-void notify_popup (NotifyNotification *, gboolean);
+void notify_up (LPAPPWIDGETS);
+void notify_popup (LPAPPWIDGETS, gboolean);
 
-#endif
-
+#include "main.h"
 #endif

@@ -88,20 +88,39 @@ void add_button_helper (GtkDialog *d, const gchar *label, gint _id) {
 }
 
 gboolean message_box_helper (GtkWindow *parent) {
+	GdkPixbuf *pb;
 	GtkWidget *m;
+	GtkWidget *content;
+	GtkWidget *h1;
 	GtkWidget *y;
 	GtkWidget *n;
+	GtkWidget *i;
+	GtkWidget *l;
+	gchar *tmp;
 	gboolean response;
-	m = gtk_message_dialog_new_with_markup (parent, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_WARNING, GTK_BUTTONS_NONE, "<b>%s</b>", _("Alarm process runing"));
+	m = gtk_dialog_new ();
+	content = gtk_dialog_get_content_area (GTK_DIALOG (m));
 	gtk_window_set_title (GTK_WINDOW (m), PACKAGE_STRING);
-	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (m), _("Do you want to exit anyway?"));
+	h1 = create_box_helper (HORIZONTAL_BOX);
+	gtk_container_set_border_width (GTK_CONTAINER (h1), 10);
+	pb = gdk_pixbuf_new_from_file_at_size (RES_DIR "/warning.png", 64, 64, NULL);
+	i = gtk_image_new_from_pixbuf (pb);
+	tmp = g_strdup_printf ("<b>%s</b>\n\n%s", _("Alarm process runing"), _("Do you want to exit anyway?"));
+	l = gtk_label_new ("");
+	gtk_label_set_markup (GTK_LABEL (l), tmp);
+	gtk_box_pack_start (GTK_BOX(h1), i, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX(h1), l, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX(content), h1, FALSE, FALSE, 0);
 	add_button_helper (GTK_DIALOG (m), _("Yes"), YES_BUTTON);
 	add_button_helper (GTK_DIALOG (m), _("No"), NO_BUTTON);
+	gtk_widget_show_all (m);
 	if (gtk_dialog_run (GTK_DIALOG (m)) == GTK_RESPONSE_YES) {
 		response = TRUE;
 	} else {
 		response = FALSE;
 	}
+	g_free (tmp);
+	g_object_unref (pb);
 	gtk_widget_destroy (m);
 	return response;
 }

@@ -20,7 +20,7 @@ set (_SOURCES
 include (FindPkgConfig)
 if (NOT PKG_CONFIG_FOUND)
 	message (FATAL_ERROR "pkg-config not found")
-endif (NOT PKG_CONFIG_FOUND)
+endif ()
 
 # check for gtk
 pkg_check_modules (GTK gtk+-${GTK_TOOLKIT_VERSION}>=${GTK_TOOLKIT_VERSION_NEED} REQUIRED)
@@ -54,7 +54,6 @@ if (${WITH_LIBNOTIFY})
 		link_directories (${NOTIFY_LIBRARY_DIRS})
 		link_libraries (${NOTIFY_LIBRARIES})
 		set (LINKER_FLAGS ${LINKER_FLAGS} ${NOTIFY_LINK_FLAGS})
-		set (_SOURCES ${_SOURCES} notify.c)
 	endif ()
 endif ()
 

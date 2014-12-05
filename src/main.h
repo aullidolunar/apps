@@ -8,7 +8,9 @@
 #include <glib/gi18n.h>
 #include <locale.h>
 #include <libintl.h>
-#include "notify.h"
+#if (WITH_LIBNOTIFY && WITH_GTK2)
+#include <libnotify/notify.h>
+#endif
 
 typedef struct {
 	GtkWidget *mainWindow;
@@ -26,8 +28,11 @@ typedef struct {
 #if (WITH_GTK2 || GTK_MINOR_VERSION < 14)
 	GtkStatusIcon *status_icon;
 #endif
-#if WITH_LIBNOTIFY
+#if (WITH_LIBNOTIFY && WITH_GTK2)
 	NotifyNotification *notification;
+#elif (WITH_GTK3)
+	GNotification *notification;
+	GApplication *app;
 #endif
 } AppWidgets, *LPAPPWIDGETS;
 

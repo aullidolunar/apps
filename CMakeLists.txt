@@ -26,6 +26,13 @@ else ()
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s")
 endif ()
 
+option (WITH_LIBNOTIFY "Enable or disable libnotify" ON)
+if (${WITH_LIBNOTIFY})
+	message (STATUS "*** Enable libnotify ***")
+	set (NOTIFY_VERSION_NEED "0.6")
+	add_definitions (-DWITH_LIBNOTIFY)
+endif ()
+
 option (ENABLE_MAINTAINER "Enable maintainer mode (locally testing)" OFF)
 if (${ENABLE_MAINTAINER})
 	message (STATUS "*** Maintainer mode is enabled ***")
@@ -51,13 +58,7 @@ else ()
 	set (GTK_TOOLKIT_VERSION_NEED "3.12")
 	set (LIBCANBERRA_GTK "libcanberra-gtk3")
 	set (LIBCANBERRA_GTK_VERSION_NEED "0.28")
-endif ()
-
-option (WITH_LIBNOTIFY "Enable or disable libnotify" ON)
-if (${WITH_LIBNOTIFY})
-	message (STATUS "*** Enable libnotify ***")
-	set (NOTIFY_VERSION_NEED "0.6")
-	add_definitions (-DWITH_LIBNOTIFY)
+	set (WITH_LIBNOTIFY OFF)
 endif ()
 
 configure_file (
@@ -70,7 +71,7 @@ enable_testing ()
 
 add_subdirectory (src)
 add_subdirectory (data)
-# add_subdirectory (po)
+add_subdirectory (po)
 
 add_test (
 	NAME test

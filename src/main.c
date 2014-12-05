@@ -8,10 +8,10 @@ int main (int argc, char *argv[]) {
 	AppWidgets *p;
 	p = g_slice_new0 (AppWidgets);
 	gtk_init (&argc, &argv);
-#if WITH_LIBNOTIFY
+#if (WITH_LIBNOTIFY && WITH_GTK2)
 	notify_init (PACKAGE_STRING);
-	p->notification = notify_up ();
 #endif
+	notify_up (p);
 	// init values
 	p->max = 120;
 	p->timer_end = 1;
@@ -24,8 +24,11 @@ int main (int argc, char *argv[]) {
 	if (p->source_id) {
 		g_source_remove (p->source_id);
 	}
-#if WITH_LIBNOTIFY
+#if (WITH_LIBNOTIFY && WITH_GTK2)
 	notify_uninit ();
+#elif (WITH_GTK3)
+	g_object_unref (p->notification);
+	g_object_unref (p->app);
 #endif
 	g_slice_free (AppWidgets, p);
 	return 0;

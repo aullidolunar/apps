@@ -16,11 +16,9 @@ gboolean timer_callback (gpointer d) {
 		if (!p->_sound) {
 			play_sound ();
 		}
-#ifdef WITH_LIBNOTIFY
 		if (!p->_notify) {
 			notify_popup (p->notification, FALSE);
 		}
-#endif
 		state = G_SOURCE_REMOVE;
 		g_source_remove (p->source_id);
 		update_button_helper (GTK_WIDGET (p->button_play), STOP);
