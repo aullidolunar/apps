@@ -101,7 +101,7 @@ void on_button4_clicked (GtkButton *button, LPDATAINFO data) {
 		gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (data->model_combo), &iter, NULL, data->pos);
 		gtk_tree_model_get (GTK_TREE_MODEL (data->model_combo), &iter, 1, &url, -1);
 		data->_str = g_string_new (Y_PATH);
-		switch (data->pos) {
+		switch (data->combo_pos) {
 			case FORMAT_MP3:
 			{
 				poop = g_strdup_printf (" -f 17 --extract-audio --audio-format mp3 --audio-quality %ik ", data->audio_bit);
@@ -123,6 +123,8 @@ void on_button4_clicked (GtkButton *button, LPDATAINFO data) {
 			case FORMAT_FACEBOOK:
 			{
 				// no options available
+				poop = g_strdup_printf (" ");
+				g_string_append (data->_str, poop);
 				break;
 			}
 		}
