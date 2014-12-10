@@ -40,7 +40,7 @@ COMMAND ${INTLTOOLEXTRACT} --type="gettext/ini" "../${PROJECT_NAME}.desktop.in"
 COMMAND ${XGETTEXT} -o "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot" --no-wrap --copyright-holder=${EMAIL} --package-name=${PROJECT_NAME} --package-version=${PROJECT_VERSION} --msgid-bugs-address=${EMAIL} --keyword=_ --keyword=N_ --from-code=utf-8 ${PROJECT_SOURCE_DIR}/src/*.c ${PROJECT_BINARY_DIR}/*.h
 )
 
-if (${PO_FILES_LEN} GREATER 0)
+if ("${PO_FILES_LEN}" GREATER 0)
 	set (MO_FILES)
 	set (LOCALE_DIRS)
 	foreach(_poFile ${PO_FILES})
