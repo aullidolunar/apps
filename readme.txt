@@ -28,4 +28,5 @@ make
 [sudo] make install
 
 History:
+14.12.2014 13:34:05: Release candidate
 27.11.2014 10:36:41: testing release
