@@ -67,6 +67,7 @@ int main (int argc, char *argv[]) {
 		if (g_file_test (ICON_PATH, G_FILE_TEST_IS_REGULAR)) {
 			gtk_window_set_icon_from_file (GTK_WINDOW (ptr->toplevel), ICON_PATH, NULL);
 		}
+		gtk_window_set_title (GTK_WINDOW (ptr->toplevel), PACKAGE_STRING);
 		ptr->terminal = vte_terminal_new ();
 		g_signal_connect (ptr->terminal, "child-exited", G_CALLBACK(child_exited), ptr);
 		gtk_container_add (GTK_CONTAINER (ptr->scroll1), ptr->terminal);
