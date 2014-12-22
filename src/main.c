@@ -7,7 +7,7 @@ int main (int argc, char *argv[]) {
 	gint video;
 	gboolean dirs;
 	GOptionEntry entries[] = {
-		{"audio", 'a', 0, G_OPTION_ARG_INT, &audio, _("set audio bitrate in MP3 option (default is 128)"), _("number")},
+		{"audio", 'a', 0, G_OPTION_ARG_INT, &audio, _("set audio bitrate in MP3 option (default is 256)"), _("number")},
 		{"video", 'v', 0, G_OPTION_ARG_INT, &video, _("set download video format in VIDEO and 3GP options (defaults are -1 for best and 17 respectly)"), _("string")},
 		{"dirs", 'd', 0, G_OPTION_ARG_NONE, &dirs, _("display directory paths"), NULL},
 		{NULL}
@@ -18,7 +18,7 @@ int main (int argc, char *argv[]) {
 	textdomain (PACKAGE);
 	setlocale (LC_ALL, "");
 	// parse command line
-	audio = 128;
+	audio = 256;
 	video = -1;
 	dirs = FALSE;
 	context = g_option_context_new (PACKAGE_STRING);
