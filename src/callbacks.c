@@ -40,8 +40,9 @@ void on_comboboxtext1_changed (GtkComboBoxText *combo_text, LPDATAINFO data) {
 	data->combo_pos = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_text));
 	gint _dir_name[] = {
 		G_USER_DIRECTORY_MUSIC,
+		G_USER_DIRECTORY_MUSIC,
 		G_USER_DIRECTORY_VIDEOS,
-		G_USER_DIRECTORY_DOWNLOAD,
+		G_USER_DIRECTORY_VIDEOS,
 		G_USER_DIRECTORY_VIDEOS
 	};
 	gtk_entry_set_text (GTK_ENTRY (data->output_dir), g_get_user_special_dir (_dir_name[data->combo_pos]));
