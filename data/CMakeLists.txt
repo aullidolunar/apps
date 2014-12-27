@@ -13,7 +13,7 @@ configure_file (
 set (DESKTOP_FILE "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop")
 add_custom_command(
 	OUTPUT "${DESKTOP_FILE}"
-	COMMAND ${INTLTOOLMERGE} -d -u ../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${DESKTOP_FILE}
+	COMMAND ${INTLTOOLMERGE} -d -u ../../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${DESKTOP_FILE}
 	COMMENT "Creating desktop file"
 )
 
