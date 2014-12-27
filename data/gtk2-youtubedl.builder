@@ -104,6 +104,7 @@
                     <property name="active">0</property>
                     <items>
                       <item>MP3</item>
+                      <item translatable="yes">MP3 (best)</item>
                       <item>Video</item>
                       <item>3GP</item>
                       <item>Facebook</item>

@@ -4,7 +4,7 @@
 # -DCMAKE_INSTALL_PREFIX=/usr
 
 cmake_minimum_required (VERSION 3.0)
-project (gtk2-youtubedl VERSION "1.1" LANGUAGES C)
+project (gtk2-youtubedl VERSION "1.2" LANGUAGES C)
 set (AUTHOR "Joel Almeida García")
 set (EMAIL "aullidolunar@gmail.com")
 

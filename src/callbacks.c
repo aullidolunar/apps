@@ -1,6 +1,6 @@
 #include "callbacks.h"
 
-enum { FORMAT_MP3, FORMAT_VIDEO, FORMAT_3GP, FORMAT_FACEBOOK };
+enum { FORMAT_MP3, FORMAT_MP3_BEST, FORMAT_VIDEO, FORMAT_3GP, FORMAT_FACEBOOK };
 
 GPid spawned_to_terminal (VteTerminal *vteterminal, const gchar *cmd_line, const gchar *url, const gchar *output_dir) {
 	GString *tmp;
@@ -105,6 +105,12 @@ void on_button4_clicked (GtkButton *button, LPDATAINFO data) {
 			case FORMAT_MP3:
 			{
 				poop = g_strdup_printf (" -f 17 --extract-audio --audio-format mp3 --audio-quality %ik ", data->audio_bit);
+				g_string_append (data->_str, poop);
+				break;
+			}
+			case FORMAT_MP3_BEST:
+			{
+				poop = g_strdup_printf (" -f best --extract-audio --audio-format mp3 --audio-quality 320k ", data->audio_bit);
 				g_string_append (data->_str, poop);
 				break;
 			}
