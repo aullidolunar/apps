@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtk2-youtubedl 1.0\n"
+"Project-Id-Version: gtk2-youtubedl 1.2\n"
 "Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
-"POT-Creation-Date: 2014-11-25 12:20-0800\n"
-"PO-Revision-Date: 2014-11-23 07:11-0800\n"
+"POT-Creation-Date: 2014-12-27 13:15-0800\n"
+"PO-Revision-Date: 2014-12-27 13:15-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es_MX\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:22
 msgid "A youtube-dl process is running"
-msgstr "Un proceso de youtube-dl está ejecutándose"
+msgstr "Un proceso del youtube-dl está ejecutándose"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:24
 msgid "Exit the application will generate a corrupted file, do you want exit anyway?"
-msgstr "Salir de la aplicación generará un archivo dañado, ¿desea salir de cualquier forma?"
+msgstr "Salir de la aplicación generará un archivo dañado, ¿desea salir de todos modos?"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:10
-msgid "set audio bitrate in MP3 option (default is 128)"
-msgstr "establece el bitraje de audio en la opción MP3 (128 es predeterminado)"
+msgid "set audio bitrate in MP3 option (default is 256)"
+msgstr "Ajustar bitraje de audio en la opción MP3 (256 es predeterminado)"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:10
 msgid "number"
@@ -36,7 +36,7 @@ msgstr "número"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:11
 msgid "set download video format in VIDEO and 3GP options (defaults are -1 for best and 17 respectly)"
-msgstr "establece el formato de video en las opciones VIDEO y 3GP (-1 y 17 son los predeterminados respectivamente)"
+msgstr "Ajustar descarga de video en opciones VIDEO y 3GP (predeterminados son -1 para mejor y 17 respectivamente)"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:11
 msgid "string"
@@ -44,9 +44,9 @@ msgstr "cadena"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:12
 msgid "display directory paths"
-msgstr "mostrar rutas de directorios"
+msgstr "Muestra ruta de directorios"
 
-#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:83
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:84
 msgid "No UI file was found"
 msgstr "Archivo UI no encontrado"
 
@@ -59,24 +59,28 @@ msgid "Operation type:"
 msgstr "Tipo de operación:"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:3
-msgid "Enable user credentials"
-msgstr "Habilitar credenciales del usuario"
+msgid "MP3 (best)"
+msgstr "MP3 (mejor)"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:4
-msgid "Username:"
-msgstr "Usuario:"
+msgid "Enable user credentials"
+msgstr "Habilitar credenciales de usuario"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:5
+msgid "Username:"
+msgstr "Nombre:"
+
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:6
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:6
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:7
 msgid "URL list"
 msgstr "Lista de URLs"
 
-#: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:7
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:8
 msgid "Output directory:"
-msgstr "Directorio de salida:"
+msgstr "Directorio de salida"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.desktop.in.h:1
 msgid "frontend for youtube-dl in gtk2"
