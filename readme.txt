@@ -1,3 +1,3 @@
-mtc 1.0
+gtk3-extractor 1.0
 
-you need cmake. To compile my apps. Have a nice day
+ffmpeg frontend for encoding MP3 audio from media files

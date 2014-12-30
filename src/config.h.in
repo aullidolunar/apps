@@ -1,0 +1,16 @@
+// Generated from config.h.in using cmake
+
+#define PACKAGE						"@PROJECT_NAME@"
+#define PACKAGE_VERSION 			"@PROJECT_VERSION@"
+#define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define GETTEXT_PACKAGE				"@PROJECT_NAME@"
+#define LOCALEDIR 					"@LOCALEDIR@"
+#define RES_DIR						"@RES_DIR@"
+
+#define PREFIX						"@CMAKE_INSTALL_PREFIX@"
+
+#define UI_PATH						"@RES_DIR@/@PROJECT_NAME@.builder"
+#define ICON_PATH					"@RES_DIR@/main.png"
+
+#define FFMPEG_PATH					"@FFMPEG_PATH@"

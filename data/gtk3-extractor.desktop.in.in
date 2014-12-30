@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Version=1.0
+Name=@PACKAGE@
+_Comment=ffmpeg frontend for encoding MP3 audio from media files
+Exec=@PACKAGE@
+Icon=@ICON_PATH@
+Terminal=false
+Categories=Utility;
