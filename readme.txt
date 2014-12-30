@@ -1,6 +1,6 @@
 gtk2-youtubedl 1.0
 
-A tool for downloading videos and extracting audio to MP3. By default the audio is extracted with 128K of bitrate.
+A tool for downloading videos and extracting audio to MP3. By default the audio is extracted with 256k of bitrate.
 Type for more details:
 
 gtk2-youtubedl -h
@@ -28,5 +28,6 @@ make
 [sudo] make install
 
 History:
+30.12.2014 11:06:40: Last release before final version
 14.12.2014 13:34:05: Release candidate
 27.11.2014 10:36:41: testing release
