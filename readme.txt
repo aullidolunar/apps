@@ -1,3 +1,3 @@
 galarm2 1.0
 
-Comingsoon stuff here
+Comingsoon stuff here (not making more updates)
