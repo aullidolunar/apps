@@ -21,7 +21,7 @@ if ("${PO_FILES_LEN}" GREATER 0)
 
 	add_custom_command(
 		OUTPUT "${DESKTOP_FILE}"
-		COMMAND ${INTLTOOLMERGE} -d -u ../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${DESKTOP_FILE}
+		COMMAND ${INTLTOOLMERGE} -d -u ../../po ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in ${DESKTOP_FILE}
 		COMMENT "Creating desktop file"
 	)
 
