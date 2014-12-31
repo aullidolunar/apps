@@ -34,6 +34,8 @@ else ()
 	set (LOCALEDIR "${RES_DIR}/locale")
 endif ()
 
+set (ICON_PATH "${RES_DIR}/main.png")
+
 set (GTK_TOOLKIT_VERSION "3.0")
 set (GTK_TOOLKIT_VERSION_NEED "3.10")
 
