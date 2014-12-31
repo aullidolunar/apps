@@ -51,9 +51,11 @@ add_definitions (-DHAVE_CONFIG_H)
 enable_testing ()
 
 add_subdirectory (src)
+
 if (EXISTS "${PROJECT_SOURCE_DIR}/data")
 	add_subdirectory (data)
 endif ()
+
 if (EXISTS "${PROJECT_SOURCE_DIR}/po")
 	add_subdirectory (po)
 endif ()

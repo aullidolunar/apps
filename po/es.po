@@ -1,0 +1,121 @@
+# Spanish translations for gtk3-extractor package
+# Traducciones al español para el paquete gtk3-extractor.
+# Copyright (C) 2014 aullidolunar@gmail.com
+# This file is distributed under the same license as the gtk3-extractor package.
+# Automatically generated, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtk3-extractor 1.0\n"
+"Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
+"POT-Creation-Date: 2014-12-30 15:56-0800\n"
+"PO-Revision-Date: 2014-12-30 15:47-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/callbacks.c:10
+msgid "do you want to exit application anyway?"
+msgstr "¿deseas salir de todos modos de la aplicación?"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/callbacks.c:18
+msgid "do still you want to abort the operation?"
+msgstr "¿deseas interrumpir de todos modos la operación?"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/callbacks.c:22
+msgid "Convertion aborted"
+msgstr "Conversión interrumpida"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/callbacks.c:47
+msgid "Starting convertion..."
+msgstr "Iniciando la conversión..."
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/callbacks.c:51
+msgid "No files to convert"
+msgstr "No se encontraron archivos para convertir"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:50
+msgid "Yes"
+msgstr "Sí"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:51
+msgid "No"
+msgstr "No"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:93
+msgid "<b>ffmpeg is still running</b>"
+msgstr "<b>ffmpeg está aún ejecutándose</b>"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:96
+msgid "Aborting the operation can cause a corrupted file"
+msgstr "Interrumpir la operación puede generar un archivo dañado"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:119
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:1
+msgid "Starts the convertion"
+msgstr "Inicia la conversión"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:120
+msgid "Stops the convertion"
+msgstr "Detienen la conversión"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:138
+msgid "Choose a directory"
+msgstr "Selecciona un directorio"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:165
+msgid "Choose a bitrate"
+msgstr "Selecciona un bitraje"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:262
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:13
+msgid "Ready"
+msgstr "Listo"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/helpers.c:313
+msgid "Converting"
+msgstr "Convirtiendo"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/src/main.c:36
+msgid "UI file not found"
+msgstr "Archivo UI no encontrado"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:2
+msgid "About the program"
+msgstr "Acerca del programa"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:3
+msgid "Quits the application"
+msgstr "Sale de la aplicación"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:5
+msgid "Set input directory: "
+msgstr "Establece directorio de entrada: "
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:6
+msgid "Delete source file"
+msgstr "Eliminar archivo fuente"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:7
+msgid "Input configuration"
+msgstr "Configuración de entrada"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:9
+msgid "Set output directory: "
+msgstr "Establece directorio de salida: "
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:11
+msgid "Set bitrate level: "
+msgstr "Establece nivel de bitraje: "
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.builder.h:12
+msgid "Output configuration"
+msgstr "Configuración de salida"
+
+#: /home/joel/Documentos/gcc/gtk3-extractor/build/gtk3-extractor.desktop.in.h:1
+msgid "ffmpeg frontend for encoding MP3 audio from media files"
+msgstr "Interfaz gráfica de ffmpeg para crear audio MP3 de archivos de medios"

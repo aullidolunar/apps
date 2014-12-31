@@ -93,7 +93,7 @@ gboolean notify_bye_bye (GtkWindow* parent, const gchar *body) {
 	gtk_label_set_markup (GTK_LABEL (h), _("<b>ffmpeg is still running</b>"));
 	g_object_set (h, "xalign", 0.0, NULL);
 	spacer = gtk_box_new (GTK_ORIENTATION_VERTICAL, 10);
-	_b = g_strdup_printf (_("Aborting the operation can cause a corrupted file:\n%s"), body);
+	_b = g_strdup_printf ("%s:\n%s", _("Aborting the operation can cause a corrupted file"), body);
 	b = gtk_label_new (_b);
 	g_free (_b);
 	gtk_box_pack_start (GTK_BOX(vertical), h, FALSE, FALSE, 0);
@@ -240,6 +240,7 @@ void watcher (GPid pid, gint status, gpointer d) {
 	LPAPPINFO ai = (LPAPPINFO)d;
 	ai->current++;
 	g_spawn_close_pid (pid);
+	ai->pid = 0;
 	if (ai->deleteMe && g_file_test (ai->outfile, G_FILE_TEST_IS_REGULAR)) {
 		g_unlink (ai->infile);
 #ifdef ENABLE_DEBUG
@@ -310,7 +311,7 @@ gboolean preprocess_runner (LPAPPINFO ai) {
 		if (ret) {
 			gchar *msg;
 			ai->pid = pid;
-			msg = g_strdup_printf (_("Converting [%i/%i]: %s"), ai->current+1, ai->total, ai->infile);
+			msg = g_strdup_printf ("%s [%i/%i]: %s", _("Converting"), ai->current+1, ai->total, ai->infile);
 			set_status_msg (GTK_LABEL (ai->status_text), GTK_IMAGE (ai->status_icon), msg, TRUE);
 			g_free (msg);
 			g_child_watch_add (pid, watcher, ai);

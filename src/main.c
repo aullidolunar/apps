@@ -26,6 +26,7 @@ int main (int argc, char *argv[]) {
 			gtk_window_set_icon_from_file (GTK_WINDOW (ai->window), ICON_PATH, NULL);
 		init_ui (ai);
 		ai->deleteMe = TRUE;
+		ai->pid = 0;
 		gtk_window_set_title (GTK_WINDOW (ai->window), PACKAGE_STRING);
 		gtk_widget_show_all (ai->window);
 		gtk_main ();
@@ -33,7 +34,7 @@ int main (int argc, char *argv[]) {
 		if (ai->outfile) g_free (ai->outfile);
 		g_slice_free (AppInfo, ai);
 	} else {
-		g_print (_("UI file not found: %s\n"), UI_PATH);
+		g_print ("%s: %s\n", _("UI file not found"), UI_PATH);
 	}
 	return 0;
 }

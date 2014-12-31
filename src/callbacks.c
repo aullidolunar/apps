@@ -20,7 +20,8 @@ void on_toolbutton1_clicked (GtkToolButton *b, LPAPPINFO ai) {
 			toggle_tool_button (b, TRUE);
 			gtk_widget_set_sensitive (ai->centerWidget, TRUE);
 			set_status_msg (GTK_LABEL (ai->status_text), GTK_IMAGE (ai->status_icon), _("Convertion aborted"), FALSE);
-			kill (ai->pid, 9);
+			if (ai->pid) kill (ai->pid, 9);
+			ai->pid = 0;
 		}
 	} else {
 		GtkTreeModel *model;
@@ -59,7 +60,7 @@ void on_toolbutton3_clicked (GtkToolButton *b, LPAPPINFO ai) {
 	gboolean ret;
 	g_signal_emit_by_name (ai->window, "delete-event", ai, &ret);
 	if (!ret) {
-		kill (ai->pid, 9);
+		if (ai->pid) kill (ai->pid, 9);
 		gtk_widget_destroy (ai->window);
 	}
 }

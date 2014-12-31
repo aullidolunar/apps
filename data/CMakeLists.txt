@@ -1,23 +1,20 @@
 # data/CMakeLists.txt
 
-if (EXISTS "${PROJECT_SOURCE_DIR}/po")
-	file (GLOB PO_FILES "${PROJECT_SOURCE_DIR}/po/*.po")
-	list (LENGTH "${PO_FILES}" PO_FILES_LEN)
-endif ()
+message (STATUS "+- entering DATA directory -+")
 
-if ("${PO_FILES_LEN}" GREATER 0)
+if (EXISTS "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.desktop.in.in")
+	
+	configure_file (
+		"${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.desktop.in.in"
+		"${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in"
+	)
+	set (DESKTOP_FILE "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop")
+	
 	find_program(INTLTOOLMERGE intltool-merge)
 	
 	if (NOT INTLTOOLMERGE)
 		message (FATAL_ERROR "intltool-merge not found (required)")
 	endif ()
-
-	configure_file (
-		"${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.desktop.in.in"
-		"${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in"
-	)
-	
-	set (DESKTOP_FILE "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop")
 
 	add_custom_command(
 		OUTPUT "${DESKTOP_FILE}"

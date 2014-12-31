@@ -1,5 +1,7 @@
 # po/CMakeLists.txt
 
+message (STATUS "+- entering PO directory -+")
+
 find_program (XGETTEXT xgettext)
 if (NOT XGETTEXT)
 	message (WARNING "For developers: xgettext not found")
@@ -26,41 +28,41 @@ IF (NOT MSGMERGE)
 endif ()
 
 add_custom_target(create-po
-COMMAND ${MSGINIT} --no-translator --no-wrap -i "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot" -o "${PROJECT_SOURCE_DIR}/po/es.po" -l es_MX.utf8
+	COMMAND ${MSGINIT} --no-translator --no-wrap -i "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot" -o "${PROJECT_SOURCE_DIR}/po/es.po" -l es_MX.utf8
 )
 
 add_custom_target(update-po
-COMMAND ${MSGMERGE} --update -N --no-wrap "${PROJECT_SOURCE_DIR}/po/es.po" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot"
+	COMMAND ${MSGMERGE} --update -N --no-wrap "${PROJECT_SOURCE_DIR}/po/es.po" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot"
 )
 
 add_custom_target(create-pot
-COMMAND ${INTLTOOLEXTRACT} --type="gettext/glade" "../../data/${PROJECT_NAME}.builder"
-COMMAND mv "../../data/${PROJECT_NAME}.builder.h" "${PROJECT_BINARY_DIR}"
-COMMAND ${INTLTOOLEXTRACT} --type="gettext/ini" "../${PROJECT_NAME}.desktop.in"
-COMMAND ${XGETTEXT} -o "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot" --no-wrap --copyright-holder=${EMAIL} --package-name=${PROJECT_NAME} --package-version=${PROJECT_VERSION} --msgid-bugs-address=${EMAIL} --keyword=_ --keyword=N_ --from-code=utf-8 ${PROJECT_SOURCE_DIR}/src/*.c ${PROJECT_BINARY_DIR}/*.h
+	COMMAND ${INTLTOOLEXTRACT} --type="gettext/glade" "../../data/${PROJECT_NAME}.builder"
+	COMMAND mv "../../data/${PROJECT_NAME}.builder.h" "${PROJECT_BINARY_DIR}"
+	COMMAND ${INTLTOOLEXTRACT} --type="gettext/ini" "../${PROJECT_NAME}.desktop.in"
+	COMMAND ${XGETTEXT} -o "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot" --no-wrap --copyright-holder=${EMAIL} --package-name=${PROJECT_NAME} --package-version=${PROJECT_VERSION} --msgid-bugs-address=${EMAIL} --keyword=_ --keyword=N_ --from-code=utf-8 ${PROJECT_SOURCE_DIR}/src/*.c ${PROJECT_BINARY_DIR}/*.h
 )
 
-if ("${PO_FILES_LEN}" GREATER 0)
-	set (MO_FILES)
-	set (LOCALE_DIRS)
-	foreach(_poFile ${PO_FILES})
-		get_filename_component(_lang ${_poFile} NAME_WE)
-		if (NOT EXISTS "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
-			add_custom_command (
+file (GLOB PO_FILES *.po)
+list (LENGTH "${PO_FILES}" PO_FILES_LEN)
+
+foreach(_poFile ${PO_FILES})
+	get_filename_component(_lang ${_poFile} NAME_WE)
+	if (NOT EXISTS "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
+		add_custom_command (
 			OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
 			COMMAND ${CMAKE_COMMAND} -E make_directory "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
 			COMMENT "Reading locale ${_lang}"
-			)
-			set (LOCALE_DIRS ${LOCALE_DIRS} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
-		endif ()
-		add_custom_command(
+		)
+		set (LOCALE_DIRS ${LOCALE_DIRS} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
+	endif ()
+	add_custom_command(
 		OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
 		COMMAND ${MSGFMT} ${_poFile} -o "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
 		COMMENT "Building ${_lang} translation"
-		)
-		set (MO_FILES ${MO_FILES} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo")
-		install (FILES "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo" DESTINATION "share/${PROJECT_NAME}/locale/${_lang}/LC_MESSAGES")
-	endforeach(_poFile ${PO_FILES})
-	add_custom_target (locales DEPENDS ${LOCALE_DIRS} ${MO_FILES})
-	add_dependencies (${PROJECT_NAME} locales)
-endif ()
+	)
+	set (MO_FILES ${MO_FILES} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo")
+	install (FILES "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo" DESTINATION "share/${PROJECT_NAME}/locale/${_lang}/LC_MESSAGES")
+endforeach(_poFile ${PO_FILES})
+
+add_custom_target (locales DEPENDS ${LOCALE_DIRS} ${MO_FILES})
+add_dependencies (${PROJECT_NAME} locales)

@@ -1,5 +1,7 @@
 # src/CMakeLists.txt
 
+message (STATUS "+- entering SRC directory -+")
+
 # set link flags
 set (LINKER_FLAGS)
 
