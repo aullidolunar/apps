@@ -33,6 +33,7 @@ add_custom_target(create-po
 
 add_custom_target(update-po
 	COMMAND ${MSGMERGE} --update -N --no-wrap "${PROJECT_SOURCE_DIR}/po/es.po" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pot"
+	COMMAND rm "${PROJECT_SOURCE_DIR}/po/es.po~"
 )
 
 add_custom_target(create-pot

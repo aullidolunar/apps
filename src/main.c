@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include <stdlib.h>
 
 int main (int argc, char *argv[]) {
 	bind_textdomain_codeset (PACKAGE, "UTF-8");
