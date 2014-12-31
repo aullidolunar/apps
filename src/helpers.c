@@ -302,7 +302,7 @@ gboolean preprocess_runner (LPAPPINFO ai) {
 		gchar **cmd_to_spawn;
 		gchar *cmd;
 		bitrate = get_combo_bitrate (GTK_COMBO_BOX (ai->combo3));
-		cmd = g_strdup_printf ("%s -i \"%s\" -f mp3 -ab %i \"%s\"", FFMPEG_PATH, ai->infile, bitrate, ai->outfile);
+		cmd = g_strdup_printf ("%s -i \"%s\" -f mp3 -b:a %ik \"%s\"", FFMPEG_PATH, ai->infile, bitrate, ai->outfile);
 #ifdef ENABLE_DEBUG
 		g_print ("CMD: %s\n", cmd);
 #endif
