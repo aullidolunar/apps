@@ -75,6 +75,7 @@
                 <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes">About the program</property>
                 <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_toolbutton2_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

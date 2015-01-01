@@ -55,6 +55,22 @@ void on_toolbutton1_clicked (GtkToolButton *b, LPAPPINFO ai) {
 	}
 }
 
+void on_toolbutton2_clicked (GtkToolButton *b, LPAPPINFO ai) {
+	const gchar *a[] = {
+		"Joel Almeida García<" PACKAGE_BUGREPORT ">",
+		NULL
+	};
+	gtk_show_about_dialog (GTK_WINDOW (ai->window),
+		"authors", a,
+		"comments", _("ffmpeg frontend for encoding MP3 audio from media files"),
+		"license-type", GTK_LICENSE_GPL_3_0,
+		"logo", gtk_window_get_icon (GTK_WINDOW (ai->window)),
+		"version", PACKAGE_VERSION,
+		"website", "https://github.com/aullidolunar/apps/tree/gtk3-extractor",
+		NULL
+	);
+}
+
 void on_toolbutton3_clicked (GtkToolButton *b, LPAPPINFO ai) {
 	gboolean state = gtk_widget_get_sensitive (ai->centerWidget);
 	gboolean ret;
