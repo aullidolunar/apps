@@ -1,5 +1,6 @@
 Hi people:
 
-This wil have updates for my git repository and branches:
+gtk2-percentage 1.0
 
-30.12.2014 12:11:01: sync wuth master branch and no more "This branch is X commit ahead of master"
+01.01.2015 08:44:51: 1st upload
+
