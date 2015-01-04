@@ -46,6 +46,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="model">liststore1</property>
+                            <signal name="changed" handler="on_combobox1_changed" swapped="no"/>
                             <child>
                               <object class="GtkCellRendererPixbuf" id="cellrendererpixbuf1"/>
                               <attributes>

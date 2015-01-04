@@ -1,0 +1,82 @@
+# Spanish translations for gtk2-percentage package
+# Traducciones al español para el paquete gtk2-percentage.
+# Copyright (C) 2015 aullidolunar@gmail.com
+# This file is distributed under the same license as the gtk2-percentage package.
+# Automatically generated, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtk2-percentage 1.0\n"
+"Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
+"POT-Creation-Date: 2015-01-04 07:42-0800\n"
+"PO-Revision-Date: 2015-01-04 07:42-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:54
+msgid "Error calculating the operation"
+msgstr "Error al calcular la operación"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:56
+msgid "Detected the following errors"
+msgstr "Errores detectados"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:109
+msgid "Combo index"
+msgstr "Índice de combo"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:116
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:133
+#: /home/joel/Documentos/gcc/gtk2-percentage/build/gtk2-percentage.builder.h:1
+msgid "Value1"
+msgstr "Valor1"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:116
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:121
+msgid "empty"
+msgstr "vacío"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:121
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:138
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:154
+#: /home/joel/Documentos/gcc/gtk2-percentage/build/gtk2-percentage.builder.h:2
+msgid "Value2"
+msgstr "Valor2"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:154
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/main.c:8
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/main.c:5
+msgid "Choose your operation"
+msgstr "Selecciona la operación"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/main.c:6
+msgid "Increment"
+msgstr "Incremento"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/main.c:7
+msgid "Decrement"
+msgstr "Descuento"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/main.c:60
+msgid "UI file not found"
+msgstr "Archivo UI no encontrado"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/build/gtk2-percentage.builder.h:3
+msgid "<b>Operation</b>"
+msgstr "<b>Operación</b>"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/build/gtk2-percentage.builder.h:4
+msgid "<b>Result</b>"
+msgstr "<b>Resultado</b>"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/build/gtk2-percentage.desktop.in.h:1
+msgid "Percentage calculator"
+msgstr "Calculadora de porcentaje"

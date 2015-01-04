@@ -12,7 +12,7 @@ void load_combo (GtkComboBox *c) {
 	GdkPixbuf *p;
 	gint pos;
 	m = GTK_LIST_STORE (gtk_combo_box_get_model (c));
-	p = gdk_pixbuf_new_from_file_at_size (RES_DIR "/bullet.png", 24, 24, NULL);
+	p = gdk_pixbuf_new_from_file_at_size (DATA_DIR "/bullet.png", 24, 24, NULL);
 	for (pos = 0; labels[pos] != NULL; pos++) {
 		GtkTreeIter iter;
 		gtk_list_store_append (m, &iter);
@@ -20,7 +20,7 @@ void load_combo (GtkComboBox *c) {
 			gtk_list_store_set (m, &iter, 0, p, 1, labels[pos], -1);
 		} else {
 			GdkPixbuf *tmp;
-			tmp = gdk_pixbuf_new_from_file_at_size (RES_DIR "/question.png", 24, 24, NULL);
+			tmp = gdk_pixbuf_new_from_file_at_size (DATA_DIR "/question.png", 24, 24, NULL);
 			gtk_list_store_set (m, &iter, 0, tmp,  1, labels[pos], -1);
 			g_object_unref (tmp);
 		}
@@ -44,6 +44,7 @@ int main (int argc, char *argv[]) {
 		gtk_builder_connect_signals (builder, ai);
 		ai->window = GTK_WIDGET (gtk_builder_get_object (builder, "window1"));
 		ai->combo = GTK_WIDGET (gtk_builder_get_object (builder, "combobox1"));
+		ai->label = GTK_WIDGET (gtk_builder_get_object (builder, "label4"));
 		ai->val1 = GTK_WIDGET (gtk_builder_get_object (builder, "entry1"));
 		ai->val2 = GTK_WIDGET (gtk_builder_get_object (builder, "entry2"));
 		ai->resp = GTK_WIDGET (gtk_builder_get_object (builder, "entry3"));

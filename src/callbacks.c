@@ -130,7 +130,7 @@ void on_button1_clicked (GtkButton *b, LPAPPINFO ai) {
 		const gchar * val1 = gtk_entry_get_text (GTK_ENTRY (ai->val1));
 		if (!IsNumberCool (val1)) {
 			e++;
-			g_string_append_printf (_error, "* Odd number in %s: %s\n", _("Value2"), val1);
+			g_string_append_printf (_error, "* Odd number in %s: %s\n", _("Value1"), val1);
 		}
 		const gchar * val2 = gtk_entry_get_text (GTK_ENTRY (ai->val2));
 		if (!IsNumberCool (val2)) {
@@ -147,7 +147,11 @@ void on_button1_clicked (GtkButton *b, LPAPPINFO ai) {
 		}
 	}
 	g_string_free (_error, TRUE);
-	g_print ("Shit freed, man\n");
+}
+
+void on_combobox1_changed (GtkComboBox *c, LPAPPINFO ai) {
+	gint pos = gtk_combo_box_get_active (c);
+	gtk_label_set_text (GTK_LABEL (ai->label), (pos != PERCENTAGE ? _("Percentage") : _("Value2")));
 }
 
 void on_button2_clicked (GtkButton *b, LPAPPINFO ai) {

@@ -13,6 +13,7 @@
 typedef struct {
 	GtkWidget *window;
 	GtkWidget *combo;
+	GtkWidget *label;
 	GtkWidget *val1;
 	GtkWidget *val2;
 	GtkWidget *resp;
