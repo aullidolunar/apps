@@ -74,16 +74,6 @@ else ()
 	set (LINKER_FLAGS ${LINKER_FLAGS} ${GTK_LINK_FLAGS})
 endif ()
 
-pkg_check_modules (LIBCONFIG libconfig REQUIRED)
-if (NOT ${LIBCONFIG_FOUND})
-	message(FATAL_ERROR "You don't seem to have libconfig development libraries installed")
-else ()
-	include_directories (${LIBCONFIG_INCLUDE_DIRS})
-	link_directories (${LIBCONFIG_LIBRARY_DIRS})
-	link_libraries (${LIBCONFIG_LIBRARIES})
-	set (LINKER_FLAGS ${LINKER_FLAGS} ${LIBCONFIG_LINK_FLAGS})
-endif ()
-
 enable_testing ()
 
 add_subdirectory (src)

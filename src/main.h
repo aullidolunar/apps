@@ -6,8 +6,8 @@
 #endif
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include <glib/gstdio.h>
 #include <gdk/gdkkeysyms.h>
-#include <libconfig.h>
 #include <locale.h>
 #include <libintl.h>
 
@@ -27,6 +27,8 @@ enum {
 	SELECTION_MOVE_DOWN
 };
 
+static const gint MAX_LINE = 256;
+static const gchararray SLIM_CONF_PATH = "/etc/slim.conf";
 static const gchararray SLIM_THEMES_DIR = "/usr/share/slim/themes";
 
 #endif

@@ -1,23 +1,34 @@
 #include "main.h"
 
-gchar * get_current_slim_theme (const gchar *slim_config) {
-	gchar *tmp;
-	config_t cfg;
-	config_setting_t *setting;
-	config_init (&cfg);
-	if (!config_read_file (&cfg, slim_config)) {
-		g_print ("Error %s %s: %s\n", _("parsing"), slim_config, config_error_text (&cfg));
-		tmp = NULL;
-	} else {
-		const gchar *str;
-		config_lookup_string (&cfg, "current_theme", &str);
-		tmp = g_strdup (str);
+gchar * get_current_slim_theme (void) {
+	gchar *tmp = NULL;
+	if (g_file_test (SLIM_CONF_PATH, G_FILE_TEST_IS_REGULAR)) {
+		FILE *fh;
+		fh = g_fopen (SLIM_CONF_PATH, "r");
+		if (fh != NULL) {
+			gchar line[256];
+			int index;
+			index = 0;
+			while (fgets(line, sizeof(line), fh)) {
+				char *token;
+				token = strtok (line, " \n\t");
+				if (!g_strcmp0 (token, "current_theme")) {
+					token = strtok (NULL, " ");
+					g_strchomp (token);
+					tmp = g_strdup (token);
+					break;
+				}
+				index++;
+			}
+			fclose (fh);
+		} else {
+			g_print ("invalid file handle\n");
+		}
 	}
-	config_destroy (&cfg);
 	return tmp;
 }
 
-gint fill_tree_view_now (GtkTreeModelSort *modelSort, GtkWidget *b) {
+gint fill_tree_view_now (GtkTreeView *tv, GtkTreeModelSort *modelSort, GtkWidget *b, const gchar *t) {
 	gint index = 0;
 	if (g_file_test (SLIM_THEMES_DIR, G_FILE_TEST_IS_DIR)) {
 		GDir *dh = g_dir_open (SLIM_THEMES_DIR, 0, NULL);
@@ -29,6 +40,15 @@ gint fill_tree_view_now (GtkTreeModelSort *modelSort, GtkWidget *b) {
 			if (g_file_test (theme_name, G_FILE_TEST_IS_REGULAR)) {
 				GtkTreeIter iter;
 				gtk_list_store_append (model_child, &iter);
+				if (!g_strcmp0 (item, t)) {
+					GtkTreeIter iter_parent;
+					GtkTreePath *path_parent;
+					gtk_tree_model_sort_convert_child_iter_to_iter (modelSort, &iter_parent, &iter);
+					path_parent = gtk_tree_model_get_path (GTK_TREE_MODEL (modelSort), &iter_parent);
+					gtk_tree_view_scroll_to_cell (tv, path_parent, NULL, FALSE, 0.0, 0.0);
+					gtk_tree_view_set_cursor (tv, path_parent, NULL, FALSE);
+					gtk_tree_path_free (path_parent);
+				}
 				gtk_list_store_set (model_child, &iter, 0, p, 1, item, -1);
 				index++;
 			}
@@ -59,19 +79,17 @@ int main (int argc, char *argv[]) {
 		gtk_builder_add_from_file (builder, UI_PATH, NULL);
 		gtk_builder_connect_signals (builder, ai);
 		ai->window = GTK_WIDGET (gtk_builder_get_object (builder, "window1"));
-		ai->label = GTK_WIDGET (gtk_builder_get_object (builder, "label1"));
+		ai->label = GTK_WIDGET (gtk_builder_get_object (builder, "label2"));
 		ai->tree_view = GTK_WIDGET (gtk_builder_get_object (builder, "treeview1"));
 		ai->button = GTK_WIDGET (gtk_builder_get_object (builder, "button1"));
 		ai->model_sort = GTK_TREE_MODEL_SORT (gtk_tree_view_get_model (GTK_TREE_VIEW (ai->tree_view)));
 		g_object_unref (builder);
-		if (g_file_test (ICON_PATH, G_FILE_TEST_IS_REGULAR))
-			gtk_window_set_icon_from_file (GTK_WINDOW (ai->window), ICON_PATH, NULL);
+		if (g_file_test (ICON_PATH, G_FILE_TEST_IS_REGULAR)) gtk_window_set_icon_from_file (GTK_WINDOW (ai->window), ICON_PATH, NULL);
 		gtk_window_set_title (GTK_WINDOW (ai->window), PACKAGE_STRING);
-		ai->slim_theme = get_current_slim_theme ("/etc/slim.conf");
-		if (ai->slim_theme)
-			gtk_label_set_text (GTK_LABEL (ai->label), ai->slim_theme);
+		ai->slim_theme = get_current_slim_theme ();
+		if (ai->slim_theme) gtk_label_set_text (GTK_LABEL (ai->label), ai->slim_theme);
 		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (ai->model_sort), 1, GTK_SORT_ASCENDING);
-		fill_tree_view_now (ai->model_sort, ai->button);
+		fill_tree_view_now (GTK_TREE_VIEW (ai->tree_view), ai->model_sort, ai->button, ai->slim_theme);
 		gtk_widget_show_all (ai->window);
 		gtk_main ();
 		if (ai->slim_theme) g_free (ai->slim_theme);

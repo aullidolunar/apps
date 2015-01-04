@@ -60,6 +60,9 @@ void on_button1_clicked (GtkButton *button, LPAPPINFO ai) {
 	gtk_tree_path_free (path);
 }
 
+void on_button2_clicked (GtkButton *button, LPAPPINFO ai) {
+}
+
 void on_button3_clicked (GtkButton *button, LPAPPINFO ai) {
 	gboolean retState;
 	g_signal_emit_by_name (ai->window, "delete-event", ai, &retState, NULL);
