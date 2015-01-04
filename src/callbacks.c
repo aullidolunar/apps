@@ -130,12 +130,12 @@ void on_button1_clicked (GtkButton *b, LPAPPINFO ai) {
 		const gchar * val1 = gtk_entry_get_text (GTK_ENTRY (ai->val1));
 		if (!IsNumberCool (val1)) {
 			e++;
-			g_string_append_printf (_error, "* Odd number in %s: %s\n", _("Value1"), val1);
+			g_string_append_printf (_error, "* %s %s: %s\n", _("Odd number in"), _("Value1"), val1);
 		}
 		const gchar * val2 = gtk_entry_get_text (GTK_ENTRY (ai->val2));
 		if (!IsNumberCool (val2)) {
 			e++;
-			g_string_append_printf (_error, "* Odd number in %s: %s\n", _("Value2"), val2);
+			g_string_append_printf (_error, "* %s %s: %s\n", _("Odd number in"), _("Value2"), val2);
 		}
 		if (e) {
 			msg_error (GTK_WINDOW (ai->window), _error->str);

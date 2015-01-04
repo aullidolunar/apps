@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtk2-percentage 1.0\n"
 "Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
-"POT-Creation-Date: 2015-01-04 07:42-0800\n"
+"POT-Creation-Date: 2015-01-04 08:00-0800\n"
 "PO-Revision-Date: 2015-01-04 07:42-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -47,6 +47,11 @@ msgstr "vacío"
 #: /home/joel/Documentos/gcc/gtk2-percentage/build/gtk2-percentage.builder.h:2
 msgid "Value2"
 msgstr "Valor2"
+
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:133
+#: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:138
+msgid "Odd number in"
+msgstr "Número extraño en"
 
 #: /home/joel/Documentos/gcc/gtk2-percentage/src/callbacks.c:154
 #: /home/joel/Documentos/gcc/gtk2-percentage/src/main.c:8
