@@ -1,0 +1,16 @@
+// Generated from config.h.in using cmake
+
+#define PACKAGE						"@PROJECT_NAME@"
+#define PACKAGE_VERSION 			"@PROJECT_VERSION@"
+#define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define GETTEXT_PACKAGE				"@PROJECT_NAME@"
+#define LOCALEDIR 					"@LOCALEDIR@"
+#define DATA_DIR					"@DATA_DIR@"
+
+#define PREFIX						"@CMAKE_INSTALL_PREFIX@"
+
+#define UI_PATH						"@DATA_DIR@/@PROJECT_NAME@.builder"
+#define ICON_PATH					"@DATA_DIR@/main.png"
+
+#define SLIM_PATH					"@SLIM_PATH@"
