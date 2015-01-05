@@ -1,5 +1,9 @@
 #include "main.h"
 
+gint msg_box () {
+	return 0;
+}
+
 gboolean move_item (GtkTreeView *tv, gint where_to_move) {
 	GtkTreeSelection *selection = gtk_tree_view_get_selection (tv);
 	GtkTreeModel *modelParent;
@@ -21,7 +25,6 @@ gboolean move_item (GtkTreeView *tv, gint where_to_move) {
 			}
 		}
 		gtk_tree_view_scroll_to_cell (tv, path, NULL, FALSE, 0.0, 0.0);
-		gtk_tree_selection_select_path (selection, path);
 		gtk_tree_view_set_cursor (tv, path, NULL, FALSE);
 		gtk_tree_path_free (path);
 	}
@@ -61,6 +64,28 @@ void on_button1_clicked (GtkButton *button, LPAPPINFO ai) {
 }
 
 void on_button2_clicked (GtkButton *button, LPAPPINFO ai) {
+	GtkTreeView *tv = GTK_TREE_VIEW (ai->tree_view);
+	GtkTreeViewColumn *column;
+	GtkTreePath *path;
+	gtk_tree_view_get_cursor (tv, &path, &column);
+	if (path) {
+		GtkClipboard *clip;
+		GtkTreeIter iter;
+		gchar *theme;
+		clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+		gtk_tree_model_get_iter (GTK_TREE_MODEL (ai->model_sort), &iter, path);
+		gtk_tree_model_get (GTK_TREE_MODEL (ai->model_sort), &iter, 1, &theme, -1);
+		gtk_clipboard_set_text (clip, theme, -1);
+		g_free (theme);
+		gtk_tree_path_free (path);
+	}/*
+	}
+	my $d = Gtk2::MessageDialog->new_with_markup ($w->{'window1'}, 'destroy-with-parent', ($tmp) ? 'info' : 'error', 'close', ($tmp) ? "<b>¡Hecho!</b>" : "<b>¡Selección vacía!</b>");
+	my $text = ($tmp) ? "El tema <b>$theme_name</b>" : "Nada";
+	$d->format_secondary_markup ($text . " fue copiado al portapales");
+	$d->set_title ($w->{'window1'}->get_title);
+	$d->run;
+	$d->destroy;*/
 }
 
 void on_button3_clicked (GtkButton *button, LPAPPINFO ai) {

@@ -3,26 +3,22 @@
 gchar * get_current_slim_theme (void) {
 	gchar *tmp = NULL;
 	if (g_file_test (SLIM_CONF_PATH, G_FILE_TEST_IS_REGULAR)) {
-		FILE *fh;
-		fh = g_fopen (SLIM_CONF_PATH, "r");
-		if (fh != NULL) {
-			gchar line[256];
-			int index;
-			index = 0;
-			while (fgets(line, sizeof(line), fh)) {
-				char *token;
-				token = strtok (line, " \n\t");
-				if (!g_strcmp0 (token, "current_theme")) {
-					token = strtok (NULL, " ");
-					g_strchomp (token);
-					tmp = g_strdup (token);
-					break;
+		FILE *fh = g_fopen (SLIM_CONF_PATH, "r");
+		if (fh) {
+			gint done = 1;
+			gchar line[MAX_LINE];
+			while (fgets (line, sizeof(line), fh) || (done)) {
+				gchar **tokens = g_strsplit_set (line, " \n\t", -1);
+				if (!g_strcmp0 (tokens[0], "current_theme")) {
+					gint last = g_strv_length (tokens);
+					tmp = g_strdup (tokens[last-2]); // one for last index and the other for trailed spacen token
+					done = 0;
 				}
-				index++;
+				g_strfreev(tokens);
 			}
 			fclose (fh);
 		} else {
-			g_print ("invalid file handle\n");
+			g_print (_("Invalid file handle\n"));
 		}
 	}
 	return tmp;
