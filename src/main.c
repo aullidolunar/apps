@@ -1,6 +1,6 @@
-#include "main.h"
+#include "callbacks.h"
 
-gchar * get_current_slim_theme (void) {
+gchar * get_current_slim_theme (GtkWindow *parent) {
 	gchar *tmp = NULL;
 	if (g_file_test (SLIM_CONF_PATH, G_FILE_TEST_IS_REGULAR)) {
 		FILE *fh = g_fopen (SLIM_CONF_PATH, "r");
@@ -11,14 +11,14 @@ gchar * get_current_slim_theme (void) {
 				gchar **tokens = g_strsplit_set (line, " \n\t", -1);
 				if (!g_strcmp0 (tokens[0], "current_theme")) {
 					gint last = g_strv_length (tokens);
-					tmp = g_strdup (tokens[last-2]); // one for last index and the other for trailed spacen token
+					tmp = g_strdup (tokens[last-2]); // one for last index and the other for trailed space token
 					done = 0;
 				}
 				g_strfreev(tokens);
 			}
 			fclose (fh);
 		} else {
-			g_print (_("Invalid file handle\n"));
+			msg_box (parent, GTK_MESSAGE_ERROR, _("Error on g_fopen"), _("Invalid file handle"));
 		}
 	}
 	return tmp;
@@ -54,7 +54,9 @@ gint fill_tree_view_now (GtkTreeView *tv, GtkTreeModelSort *modelSort, GtkWidget
 		g_object_unref (p);
 		g_dir_close (dh);
 	} else {
-		g_print ("Error: %s: %s\n", _("SLim theme directory not found"), SLIM_THEMES_DIR);
+		gchar *f = g_strdup_printf ("%s:\n%s", _("SLim theme directory not found"), SLIM_THEMES_DIR);
+		msg_box (NULL, GTK_MESSAGE_ERROR, _("Directory error"), f);
+		g_free (f);
 	}
 	return index;
 }
@@ -82,7 +84,7 @@ int main (int argc, char *argv[]) {
 		g_object_unref (builder);
 		if (g_file_test (ICON_PATH, G_FILE_TEST_IS_REGULAR)) gtk_window_set_icon_from_file (GTK_WINDOW (ai->window), ICON_PATH, NULL);
 		gtk_window_set_title (GTK_WINDOW (ai->window), PACKAGE_STRING);
-		ai->slim_theme = get_current_slim_theme ();
+		ai->slim_theme = get_current_slim_theme (GTK_WINDOW (ai->window));
 		if (ai->slim_theme) gtk_label_set_text (GTK_LABEL (ai->label), ai->slim_theme);
 		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (ai->model_sort), 1, GTK_SORT_ASCENDING);
 		fill_tree_view_now (GTK_TREE_VIEW (ai->tree_view), ai->model_sort, ai->button, ai->slim_theme);

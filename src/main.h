@@ -21,12 +21,6 @@ typedef struct {
 	gchar *slim_theme;
 } AppInfo, *LPAPPINFO;
 
-enum {
-	UNUSED,
-	SELECTION_MOVE_UP,
-	SELECTION_MOVE_DOWN
-};
-
 static const gint MAX_LINE = 256;
 static const gchararray SLIM_CONF_PATH = "/etc/slim.conf";
 static const gchararray SLIM_THEMES_DIR = "/usr/share/slim/themes";

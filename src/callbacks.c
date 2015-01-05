@@ -1,6 +1,11 @@
-#include "main.h"
+#include "callbacks.h"
 
-gint msg_box () {
+gint msg_box (GtkWindow *parent, GtkMessageType type, const gchar *h, const gchar *b) {
+	GtkWidget *dialog = gtk_message_dialog_new_with_markup (parent, GTK_DIALOG_DESTROY_WITH_PARENT, type, GTK_BUTTONS_CLOSE, "<b>%s</b>", h);
+	gtk_window_set_title (GTK_WINDOW (dialog), PACKAGE_STRING);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), b);
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
 	return 0;
 }
 
@@ -15,7 +20,7 @@ gboolean move_item (GtkTreeView *tv, gint where_to_move) {
 			if (!gtk_tree_path_prev (path)) {
 				gint total = gtk_tree_model_iter_n_children (modelParent, NULL);
 				gtk_tree_path_free (path);
-				path = gtk_tree_path_new_from_indices (total-1,-1);
+				path = gtk_tree_path_new_from_indices (total-1, -1);
 			}
 		} else { // down
 			if (gtk_tree_model_iter_next (modelParent, &iter)) {
@@ -55,18 +60,27 @@ void on_window1_destroy (GtkWindow *window, LPAPPINFO ai) {
 }
 
 void on_button1_clicked (GtkButton *button, LPAPPINFO ai) {
-	GtkTreeView *tv = GTK_TREE_VIEW (ai->tree_view);
-	GtkTreeViewColumn *column;
-	GtkTreePath *path;
-	gtk_tree_view_get_cursor (tv, &path, &column);
-	if (path) gtk_tree_view_row_activated (tv, path, column);
-	gtk_tree_path_free (path);
+	GtkWidget *_tv = ai->tree_view;
+	gboolean state = gtk_widget_get_sensitive (_tv);
+	if (state) {
+		GtkTreeView *tv = GTK_TREE_VIEW (_tv);
+		GtkTreeViewColumn *column;
+		GtkTreePath *path;
+		gtk_tree_view_get_cursor (tv, &path, &column);
+		if (path) gtk_tree_view_row_activated (tv, path, column);
+		gtk_tree_path_free (path);
+	} else {
+		kill (ai->_pid, 9);
+		ai->_pid = 0;
+	}
+	gtk_widget_set_sensitive (_tv, !state);
 }
 
 void on_button2_clicked (GtkButton *button, LPAPPINFO ai) {
 	GtkTreeView *tv = GTK_TREE_VIEW (ai->tree_view);
 	GtkTreeViewColumn *column;
 	GtkTreePath *path;
+	gchar *body;
 	gtk_tree_view_get_cursor (tv, &path, &column);
 	if (path) {
 		GtkClipboard *clip;
@@ -76,16 +90,14 @@ void on_button2_clicked (GtkButton *button, LPAPPINFO ai) {
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (ai->model_sort), &iter, path);
 		gtk_tree_model_get (GTK_TREE_MODEL (ai->model_sort), &iter, 1, &theme, -1);
 		gtk_clipboard_set_text (clip, theme, -1);
+		body = g_strdup_printf ("%s: %s", _("Theme name copied to clipboard"), theme);
 		g_free (theme);
 		gtk_tree_path_free (path);
-	}/*
+	} else {
+		body = g_strdup_printf (_("No theme name was selected"));
 	}
-	my $d = Gtk2::MessageDialog->new_with_markup ($w->{'window1'}, 'destroy-with-parent', ($tmp) ? 'info' : 'error', 'close', ($tmp) ? "<b>¡Hecho!</b>" : "<b>¡Selección vacía!</b>");
-	my $text = ($tmp) ? "El tema <b>$theme_name</b>" : "Nada";
-	$d->format_secondary_markup ($text . " fue copiado al portapales");
-	$d->set_title ($w->{'window1'}->get_title);
-	$d->run;
-	$d->destroy;*/
+	msg_box (GTK_WINDOW (ai->window), GTK_MESSAGE_INFO, _("Clipboard information"), body);
+	g_free (body);
 }
 
 void on_button3_clicked (GtkButton *button, LPAPPINFO ai) {
