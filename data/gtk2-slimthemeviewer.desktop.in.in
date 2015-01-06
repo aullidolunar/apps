@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Version=1.0
+Name=@PROJECT_NAME@
+_Comment=SLim theme viewer
+Exec=@PROJECT_NAME@
+Icon=@DATA_DIR@/main.png
+Terminal=false
+Categories=Utility;

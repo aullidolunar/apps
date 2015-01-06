@@ -1,12 +1,13 @@
 #include "callbacks.h"
 
-gint msg_box (GtkWindow *parent, GtkMessageType type, const gchar *h, const gchar *b) {
-	GtkWidget *dialog = gtk_message_dialog_new_with_markup (parent, GTK_DIALOG_DESTROY_WITH_PARENT, type, GTK_BUTTONS_CLOSE, "<b>%s</b>", h);
+gint msg_box (GtkWindow *parent, GtkMessageType type, GtkButtonsType buttons, const gchar *h, const gchar *b) {
+	GtkWidget *dialog = gtk_message_dialog_new_with_markup (parent, GTK_DIALOG_DESTROY_WITH_PARENT, type, buttons, "<b>%s</b>", h);
+	gint response = 0;
 	gtk_window_set_title (GTK_WINDOW (dialog), PACKAGE_STRING);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), b);
-	gtk_dialog_run (GTK_DIALOG (dialog));
+	response = gtk_dialog_run (GTK_DIALOG (dialog));
 	gtk_widget_destroy (dialog);
-	return 0;
+	return response;
 }
 
 gboolean move_item (GtkTreeView *tv, gint where_to_move) {
@@ -60,20 +61,22 @@ void on_window1_destroy (GtkWindow *window, LPAPPINFO ai) {
 }
 
 void on_button1_clicked (GtkButton *button, LPAPPINFO ai) {
-	GtkWidget *_tv = ai->tree_view;
-	gboolean state = gtk_widget_get_sensitive (_tv);
+	gboolean state = gtk_widget_get_sensitive (ai->tree_view);
 	if (state) {
-		GtkTreeView *tv = GTK_TREE_VIEW (_tv);
+		GtkTreeView *tv = GTK_TREE_VIEW (ai->tree_view);
 		GtkTreeViewColumn *column;
 		GtkTreePath *path;
 		gtk_tree_view_get_cursor (tv, &path, &column);
-		if (path) gtk_tree_view_row_activated (tv, path, column);
-		gtk_tree_path_free (path);
+		if (path) {
+			gtk_tree_view_row_activated (tv, path, column);
+			gtk_tree_path_free (path);
+		}
+		gtk_widget_set_sensitive (ai->tree_view, FALSE);
 	} else {
 		kill (ai->_pid, 9);
 		ai->_pid = 0;
+		gtk_widget_set_sensitive (ai->tree_view, TRUE);
 	}
-	gtk_widget_set_sensitive (_tv, !state);
 }
 
 void on_button2_clicked (GtkButton *button, LPAPPINFO ai) {
@@ -96,7 +99,7 @@ void on_button2_clicked (GtkButton *button, LPAPPINFO ai) {
 	} else {
 		body = g_strdup_printf (_("No theme name was selected"));
 	}
-	msg_box (GTK_WINDOW (ai->window), GTK_MESSAGE_INFO, _("Clipboard information"), body);
+	msg_box (GTK_WINDOW (ai->window), GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, _("Clipboard information"), body);
 	g_free (body);
 }
 
@@ -151,16 +154,13 @@ gboolean on_treeview1_key_press_event (GtkTreeView *tv, GdkEventKey *event, LPAP
 gboolean on_window1_delete_event (GtkWindow *win, GdkEvent *event, LPAPPINFO ai) {
 	gboolean retState = FALSE;
 	if (ai->_pid) {
-		GtkWidget *d = gtk_message_dialog_new_with_markup (win, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO, "<b>%s</b>", _("SLim is still running!"));
-		gtk_window_set_title (GTK_WINDOW (d), PACKAGE_STRING);
-		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (d), _("Are you sure you want to exit?"));
-		if (gtk_dialog_run (GTK_DIALOG (d)) == GTK_RESPONSE_YES) {
+		gint response = msg_box (win, GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO, _("SLim is still running!"), _("Are you sure you want to exit?"));
+		if (response == GTK_RESPONSE_YES) {
 			kill (ai->_pid, 9);
 			ai->_pid = 0;
 		} else {
 			retState = TRUE;
 		}
-		gtk_widget_destroy (d);
 	}
 	return retState;
 }

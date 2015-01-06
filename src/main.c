@@ -18,7 +18,7 @@ gchar * get_current_slim_theme (GtkWindow *parent) {
 			}
 			fclose (fh);
 		} else {
-			msg_box (parent, GTK_MESSAGE_ERROR, _("Error on g_fopen"), _("Invalid file handle"));
+			msg_box (parent, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, _("Error on g_fopen"), _("Invalid file handle"));
 		}
 	}
 	return tmp;
@@ -55,7 +55,7 @@ gint fill_tree_view_now (GtkTreeView *tv, GtkTreeModelSort *modelSort, GtkWidget
 		g_dir_close (dh);
 	} else {
 		gchar *f = g_strdup_printf ("%s:\n%s", _("SLim theme directory not found"), SLIM_THEMES_DIR);
-		msg_box (NULL, GTK_MESSAGE_ERROR, _("Directory error"), f);
+		msg_box (NULL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, _("Directory error"), f);
 		g_free (f);
 	}
 	return index;

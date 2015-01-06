@@ -8,6 +8,6 @@ enum {
 	SELECTION_MOVE_DOWN
 };
 
-gint msg_box (GtkWindow *, GtkMessageType, const gchar*, const gchar *);
+gint msg_box (GtkWindow *, GtkMessageType, GtkButtonsType, const gchar *, const gchar *);
 
 #endif
