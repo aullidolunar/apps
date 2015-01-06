@@ -75,7 +75,6 @@ void on_button1_clicked (GtkButton *button, LPAPPINFO ai) {
 	} else {
 		kill (ai->_pid, 9);
 		ai->_pid = 0;
-		gtk_widget_set_sensitive (ai->tree_view, TRUE);
 	}
 }
 

@@ -1,0 +1,80 @@
+# Spanish translations for gtk2-slimthemeviewer package
+# Traducciones al español para el paquete gtk2-slimthemeviewer.
+# Copyright (C) 2015 aullidolunar@gmail.com
+# This file is distributed under the same license as the gtk2-slimthemeviewer package.
+# Automatically generated, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtk2-slimthemeviewer 1.0\n"
+"Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
+"POT-Creation-Date: 2015-01-06 10:09-0800\n"
+"PO-Revision-Date: 2015-01-06 10:09-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:42
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/build/gtk2-slimthemeviewer.builder.h:3
+msgid "Launch SLim with current selected theme"
+msgstr "Ejecuta SLim con el tema seleccionado"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:43
+msgid "Close SLim instance"
+msgstr "Cierra instancia de SLim"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:95
+msgid "Theme name copied to clipboard"
+msgstr "Tema copiado al portapapeles"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:99
+msgid "No theme name was selected"
+msgstr "No hay tema seleccionado"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:101
+msgid "Clipboard information"
+msgstr "Información del portapapeles"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:156
+msgid "SLim is still running!"
+msgstr "¡SLim está aún ejecutándose!"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/callbacks.c:156
+msgid "Are you sure you want to exit?"
+msgstr "¿Seguro deseas salir?"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/main.c:21
+msgid "Error on g_fopen"
+msgstr "Error en g_fopen"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/main.c:21
+msgid "Invalid file handle"
+msgstr "Identificador de archivo erróneo"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/main.c:57
+msgid "SLim theme directory not found"
+msgstr "Directorio de temas de SLim no encontrado"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/main.c:58
+msgid "Directory error"
+msgstr "Error de directorio"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/src/main.c:96
+msgid "UI file not found"
+msgstr "Archivo UI no encontrado"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/build/gtk2-slimthemeviewer.builder.h:1
+msgid "<b>Current theme</b>"
+msgstr "<b>Tema actual</b>"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/build/gtk2-slimthemeviewer.builder.h:2
+msgid "Theme list"
+msgstr "Lista de temas"
+
+#: /home/joel/Documentos/gcc/gtk2-slimthemeviewer/build/gtk2-slimthemeviewer.desktop.in.h:1
+msgid "SLim theme viewer"
+msgstr "Visor de temas de SLim"
