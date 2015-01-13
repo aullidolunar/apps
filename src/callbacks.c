@@ -7,7 +7,7 @@ void on_window1_destroy (GtkWindow *window, LPAPPINFO ai) {
 gboolean IsNumberCool (const gchar *s) {
 	GRegex *regex;
 	gboolean retval;
-	regex = g_regex_new ("^-?\\d*(\\.\\d+)?$", G_REGEX_CASELESS, 0, NULL);
+	regex = g_regex_new ("^[-]?\\d+(?:[.]\\d+)?$", G_REGEX_CASELESS, 0, NULL);
 	retval = g_regex_match (regex, s, 0, NULL);
 	g_regex_unref (regex);
 	return retval;
