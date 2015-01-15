@@ -29,6 +29,7 @@ include_directories (${PROJECT_BINARY_DIR} ${GTK2_INCLUDE_DIRS} ${VTE2_INCLUDE_D
 link_directories (${GTK2_LIBRARY_DIRS} ${VTE2_LIBRARY_DIRS})
 link_libraries (${GTK2_LIBRARIES} ${VTE2_LIBRARIES})
 add_executable (${PROJECT_NAME} ${_SOURCES} ${GTK2_LINK_FLAGS} ${VTE2_LINK_FLAGS})
+set_target_properties (${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 # install destination
 install (TARGETS ${PROJECT_NAME} DESTINATION "bin")

@@ -242,6 +242,7 @@
                     <property name="can_focus">True</property>
                     <property name="model">liststore1</property>
                     <property name="enable_grid_lines">both</property>
+                    <signal name="button-press-event" handler="treeview1_button_press_event_cb" swapped="no"/>
                     <child>
                       <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                         <property name="title" translatable="yes">URL list</property>

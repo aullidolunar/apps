@@ -5,11 +5,11 @@
 #define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
 #define PACKAGE_BUGREPORT			"@EMAIL@"
 #define LOCALEDIR 					"@LOCALEDIR@"
-#define RES_DIR						"@RES_DIR@"
+#define DATA_DIR					"@DATA_DIR@"
 
 #define PREFIX						"@CMAKE_INSTALL_PREFIX@"
 #define F_PATH						"@F_PATH@"
 #define Y_PATH						"@Y_PATH@"
 
-#define UI_PATH						"@RES_DIR@/@PROJECT_NAME@.builder"
-#define ICON_PATH					"@RES_DIR@/@PROJECT_NAME@.png"
+#define UI_PATH						"@DATA_DIR@/@PROJECT_NAME@.builder"
+#define ICON_PATH					"@DATA_DIR@/@PROJECT_NAME@.png"

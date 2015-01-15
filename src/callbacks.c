@@ -1,6 +1,40 @@
 #include "callbacks.h"
 
 enum { FORMAT_MP3, FORMAT_MP3_BEST, FORMAT_VIDEO, FORMAT_3GP, FORMAT_FACEBOOK };
+enum { UNUSED, LEFT_CLICK, MIDDLE_CLICK, RIGHT_CLICK };
+
+void view_popup_menu_onDoSomething (GtkWidget *menuitem, gchar *_url) {
+	GtkClipboard *clip;
+	clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+	gtk_clipboard_set_text (clip, _url, -1);
+	g_free (_url);
+}
+
+gboolean current_item_popup (GtkTreeView *_tv, GdkEventButton *event) {
+	GtkTreePath *path;
+	gboolean state;
+	if (gtk_tree_view_get_path_at_pos (_tv, event->x, event->y, &path, NULL, NULL, NULL)) {
+		GtkWidget *menu;
+		GtkWidget *item_copy;
+		GtkTreeModel *model;
+		GtkTreeIter iter;
+		gchar *url;
+		model = gtk_tree_view_get_model (_tv);
+		gtk_tree_model_get_iter (model, &iter, path);
+		gtk_tree_model_get (model, &iter, 1, &url, -1);
+		menu = gtk_menu_new ();
+		item_copy = gtk_image_menu_item_new_from_stock (GTK_STOCK_COPY, NULL);
+		g_signal_connect (item_copy, "activate", G_CALLBACK (view_popup_menu_onDoSomething), url);
+		gtk_menu_shell_append (GTK_MENU_SHELL(menu), item_copy);
+		gtk_widget_show_all (menu);
+		gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, (event != NULL) ? event->button : UNUSED, gdk_event_get_time ((GdkEvent*)event));
+		state = FALSE;
+		gtk_tree_path_free (path);
+	} else {
+		state = TRUE;
+	}
+	return state;
+}
 
 GPid spawned_to_terminal (VteTerminal *vteterminal, const gchar *cmd_line, const gchar *url, const gchar *output_dir) {
 	GString *tmp;
@@ -32,6 +66,17 @@ void toggle_sensitive (GtkWidget *child) {
 	gtk_widget_set_sensitive (child, !state);
 }
 
+// added 14.01.2015 for version 1.3
+gboolean treeview1_button_press_event_cb (GtkTreeView *tv, GdkEventButton *event, LPDATAINFO data) {
+	switch (event->button) {
+		case RIGHT_CLICK:
+		{
+			return current_item_popup (tv, event);
+		}
+	}
+	return FALSE;
+}
+
 void on_window1_destroy(GtkWindow *widget, LPDATAINFO data) {
 	gtk_main_quit();
 }
@@ -59,7 +104,7 @@ void on_button1_clicked (GtkButton *button, LPDATAINFO data) {
 	const gchar* url;
 	url = gtk_entry_get_text (GTK_ENTRY (data->url_text));
 	gtk_list_store_append (data->model_combo, &iter);
-	pixbuf = gdk_pixbuf_new_from_file_at_size (RES_DIR "/wait.png", 16, 16, NULL);
+	pixbuf = gdk_pixbuf_new_from_file_at_size (DATA_DIR "/wait.png", 16, 16, NULL);
 	gtk_list_store_set (data->model_combo, &iter, 0, pixbuf, 1, url, -1);
 	gtk_entry_set_text (GTK_ENTRY (data->url_text), "");
 	gtk_widget_set_sensitive (data->ok_button, TRUE);
@@ -154,7 +199,7 @@ void child_exited (VteTerminal *vteterminal, LPDATAINFO data) {
 	gchar *img;
 	gint status;
 	status = vte_terminal_get_child_exit_status (vteterminal);
-	img = g_build_filename (RES_DIR, status ? "error.png" : "download.png", NULL);
+	img = g_build_filename (DATA_DIR, status ? "error.png" : "download.png", NULL);
 	pixbuf = gdk_pixbuf_new_from_file_at_size (img, 16, 16, NULL);
 	gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (data->model_combo), &iter, NULL, data->pos);
 	gtk_list_store_set (data->model_combo, &iter, 0, pixbuf, -1);

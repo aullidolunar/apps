@@ -31,7 +31,7 @@ int main (int argc, char *argv[]) {
 		return 1;
 	}
 	if (dirs) {
-		g_print ("*** %s ***\nPREFIX: %s\nRES_DIR: %s\nLOCALEDIR: %s\nF_PATH: %s\nY_PATH: %s\n", PACKAGE_STRING, PREFIX, RES_DIR, LOCALEDIR, F_PATH, Y_PATH);
+		g_print ("*** %s ***\nPREFIX: %s\nDATA_DIR: %s\nLOCALEDIR: %s\nF_PATH: %s\nY_PATH: %s\n", PACKAGE_STRING, PREFIX, DATA_DIR, LOCALEDIR, F_PATH, Y_PATH);
 		return 0;
 	}
 	g_option_context_free (context);
