@@ -5,6 +5,6 @@ Version=1.0
 Name=@PROJECT_NAME@
 _Comment=frontend for youtube-dl in gtk2
 Exec=@PROJECT_NAME@
-Icon=@RES_DIR@/@PROJECT_NAME@.png
+Icon=@DATA_DIR@/@PROJECT_NAME@.png
 Terminal=false
 Categories=Utility;
