@@ -8,7 +8,16 @@
       <column type="GdkPixbuf"/>
       <!-- column-name url -->
       <column type="gchararray"/>
+      <!-- column-name outdir -->
+      <column type="gchararray"/>
+      <!-- column-name optype -->
+      <column type="gchararray"/>
+      <!-- column-name opcmd -->
+      <column type="gint"/>
+      <!-- column-name retval -->
+      <column type="gboolean"/>
     </columns>
+    <signal name="row-deleted" handler="on_liststore1_row_deleted" swapped="no"/>
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
@@ -89,7 +98,7 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Operation type:</property>
+                    <property name="label" translatable="yes">Operation type</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -101,7 +110,7 @@
                   <object class="GtkComboBoxText" id="comboboxtext1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="active">0</property>
+                    <property name="active">1</property>
                     <items>
                       <item>MP3</item>
                       <item translatable="yes">MP3 (best)</item>
@@ -243,19 +252,49 @@
                     <property name="model">liststore1</property>
                     <property name="enable_grid_lines">both</property>
                     <signal name="button-press-event" handler="treeview1_button_press_event_cb" swapped="no"/>
+                    <signal name="key-press-event" handler="on_treeview1_key_press_event" swapped="no"/>
                     <child>
                       <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-                        <property name="title" translatable="yes">URL list</property>
+                        <property name="sizing">autosize</property>
+                        <property name="title" translatable="yes">State</property>
                         <child>
                           <object class="GtkCellRendererPixbuf" id="cellrendererpixbuf1"/>
                           <attributes>
                             <attribute name="pixbuf">0</attribute>
                           </attributes>
                         </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="treeviewcolumn2">
+                        <property name="title" translatable="yes">URL path</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext1"/>
                           <attributes>
                             <attribute name="text">1</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="treeviewcolumn3">
+                        <property name="title" translatable="yes">Ouput path</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                          <attributes>
+                            <attribute name="text">2</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="treeviewcolumn4">
+                        <property name="sizing">autosize</property>
+                        <property name="title" translatable="yes">Operation type</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext3"/>
+                          <attributes>
+                            <attribute name="text">3</attribute>
                           </attributes>
                         </child>
                       </object>
@@ -267,36 +306,6 @@
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">5</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="label" translatable="yes">Output directory:</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">6</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry2">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="editable">False</property>
-                <property name="invisible_char">•</property>
-                <property name="primary_icon_activatable">False</property>
-                <property name="secondary_icon_activatable">False</property>
-                <property name="primary_icon_sensitive">True</property>
-                <property name="secondary_icon_sensitive">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">7</property>
               </packing>
             </child>
           </object>

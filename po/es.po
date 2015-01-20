@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtk2-youtubedl 1.2\n"
+"Project-Id-Version: gtk2-youtubedl 2.0\n"
 "Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
-"POT-Creation-Date: 2014-12-27 13:15-0800\n"
+"POT-Creation-Date: 2015-01-19 20:49-0800\n"
 "PO-Revision-Date: 2014-12-27 13:15-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:22
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:195
+msgid "Remove failed"
+msgstr "Elimina fallidos"
+
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:197
+msgid "Remove succeeded"
+msgstr "Elimina exitosos"
+
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:214
 msgid "A youtube-dl process is running"
 msgstr "Un proceso del youtube-dl está ejecutándose"
 
-#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:24
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/callbacks.c:216
 msgid "Exit the application will generate a corrupted file, do you want exit anyway?"
 msgstr "Salir de la aplicación generará un archivo dañado, ¿desea salir de todos modos?"
 
@@ -46,7 +54,7 @@ msgstr "cadena"
 msgid "display directory paths"
 msgstr "Muestra ruta de directorios"
 
-#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:84
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/src/main.c:83
 msgid "No UI file was found"
 msgstr "Archivo UI no encontrado"
 
@@ -55,8 +63,8 @@ msgid "Input video URL:"
 msgstr "Ingresa URL de video:"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:2
-msgid "Operation type:"
-msgstr "Tipo de operación:"
+msgid "Operation type"
+msgstr "Tipo de operación"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:3
 msgid "MP3 (best)"
@@ -75,11 +83,15 @@ msgid "Password:"
 msgstr "Contraseña:"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:7
-msgid "URL list"
-msgstr "Lista de URLs"
+msgid "State"
+msgstr "Estado"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:8
-msgid "Output directory:"
+msgid "URL path"
+msgstr "Ruta del URL"
+
+#: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.builder.h:9
+msgid "Ouput path"
 msgstr "Directorio de salida"
 
 #: /home/joel/Documentos/gcc/gtk2-youtubedl/build/gtk2-youtubedl.desktop.in.h:1

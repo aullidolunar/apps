@@ -6,7 +6,7 @@
 # cmake -DENABLE_DEBUG=ON -DENABLE_MAINTAINER=ON ../
 
 cmake_minimum_required (VERSION 3.0)
-project (gtk2-youtubedl VERSION "1.3" LANGUAGES C)
+project (gtk2-youtubedl VERSION "2.0" LANGUAGES C)
 set (AUTHOR "Joel Almeida García")
 set (EMAIL "aullidolunar@gmail.com")
 

@@ -42,7 +42,7 @@ int main (int argc, char *argv[]) {
 		gtk_init (&argc, &argv);
 		ptr = g_slice_new0 (DataInfo);
 		builder = gtk_builder_new ();
-		ptr->combo_pos = 0;
+		ptr->combo_pos = FORMAT_MP3_BEST;
 		ptr->total = 0;
 		ptr->pos = 0;
 		ptr->pid = -1;
@@ -55,13 +55,13 @@ int main (int argc, char *argv[]) {
 		ptr->url_text = GTK_WIDGET (gtk_builder_get_object (builder, "entry1"));
 		ptr->user_text = GTK_WIDGET (gtk_builder_get_object (builder, "entry3"));
 		ptr->pass_text = GTK_WIDGET (gtk_builder_get_object (builder, "entry4"));
-		ptr->output_dir = GTK_WIDGET (gtk_builder_get_object (builder, "entry2"));
 		ptr->check1 = GTK_WIDGET (gtk_builder_get_object (builder, "checkbutton1"));
 		ptr->add_button = GTK_WIDGET (gtk_builder_get_object (builder, "button1"));
+		ptr->clean_button = GTK_WIDGET (gtk_builder_get_object (builder, "button2"));
 		ptr->ok_button = GTK_WIDGET (gtk_builder_get_object (builder, "button4"));
 		ptr->child1 = GTK_WIDGET (gtk_builder_get_object (builder, "vbox1"));
 		ptr->child2 = GTK_WIDGET (gtk_builder_get_object (builder, "vbox3"));
-		ptr->model_combo = GTK_LIST_STORE (gtk_builder_get_object (builder, "liststore1"));
+		ptr->model_tv = GTK_LIST_STORE (gtk_builder_get_object (builder, "liststore1"));
 		gtk_builder_connect_signals (builder, ptr);
 		g_object_unref (builder);
 		if (g_file_test (ICON_PATH, G_FILE_TEST_IS_REGULAR)) {
@@ -76,7 +76,6 @@ int main (int argc, char *argv[]) {
 		gtk_main ();
 		if (ptr->pid > 0) {
 			g_spawn_close_pid (ptr->pid);
-			g_string_free (ptr->_str, TRUE);
 		}
 		g_slice_free (DataInfo, ptr);
 		return 0;

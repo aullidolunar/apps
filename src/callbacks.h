@@ -6,6 +6,7 @@
 #endif
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include <gdk/gdkkeysyms.h>
 #include <vte/vte.h>
 #include <locale.h>
 #include <libintl.h>
@@ -21,11 +22,11 @@ typedef struct {
 	GtkWidget *url_text;
 	GtkWidget *user_text;
 	GtkWidget *pass_text;
-	GtkWidget *output_dir;
 	GtkWidget *add_button;
 	GtkWidget *ok_button;
+	GtkWidget *clean_button;
 	GtkWidget *check1;
-	GtkListStore *model_combo;
+	GtkListStore *model_tv; // changed in 2.0
 	gint combo_pos;
 	gint total;
 	gint pos;
@@ -34,9 +35,44 @@ typedef struct {
 	gchar *user;
 	gchar *pass;
 	GPid pid;
-	GString *_str;
 } DataInfo, *LPDATAINFO;
 
+typedef struct {
+	gboolean refState;
+	GList *refNode;
+} RemoveData, *LPREMOVEDATA;
+
 void child_exited (VteTerminal *, LPDATAINFO);
+
+/* enum for combo operation type */
+enum {
+	FORMAT_MP3,
+	FORMAT_MP3_BEST,
+	FORMAT_VIDEO,
+	FORMAT_3GP,
+	FORMAT_FACEBOOK
+};
+
+/* move selection on treeview */
+enum {
+	UNUSED_1,
+	SELECTION_MOVE_UP,
+	SELECTION_MOVE_DOWN
+};
+
+static const gint out_paths[] = {
+	G_USER_DIRECTORY_MUSIC,
+	G_USER_DIRECTORY_MUSIC,
+	G_USER_DIRECTORY_VIDEOS,
+	G_USER_DIRECTORY_VIDEOS,
+	G_USER_DIRECTORY_VIDEOS
+};
+
+enum {
+	UNUSED_2,
+	LEFT_CLICK,
+	MIDDLE_CLICK,
+	RIGHT_CLICK
+};
 
 #endif
