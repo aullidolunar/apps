@@ -43,13 +43,13 @@ int main (int argc, char *argv[]) {
 			SELFIE,
 			NULL
 		};
-		g_object_set (di.object[ABOUTDIALOG], "authors", authors, "version", PACKAGE_VERSION, "translator-credits", SELFIE, "logo", gtk_window_get_icon (GTK_WINDOW (di.object[TOPLEVEL])), NULL);
 		if (g_file_test (ICON_PATH, G_FILE_TEST_IS_REGULAR)) gtk_window_set_icon_from_file (GTK_WINDOW (di.object[TOPLEVEL]), ICON_PATH, NULL);
 		gtk_window_set_title (GTK_WINDOW (di.object[TOPLEVEL]), PACKAGE_STRING);
 		di.status_icon = gtk_status_icon_new_from_file (ICON_PATH);
 		gtk_status_icon_set_tooltip_text (di.status_icon, _("Alarm is not running"));
 		g_signal_connect (di.status_icon, "activate", G_CALLBACK (on_status_icon_activate), GTK_WINDOW (di.object[TOPLEVEL]));
 		g_signal_connect (di.status_icon, "popup-menu", G_CALLBACK (on_status_icon_popup_menu), GTK_MENU (di.object[STATUS_MENU_ITEM]));
+		g_object_set (di.object[ABOUTDIALOG], "authors", authors, "version", PACKAGE_VERSION, "translator-credits", SELFIE, "logo", gtk_window_get_icon (GTK_WINDOW (di.object[TOPLEVEL])), NULL);
 		gtk_widget_show_all (GTK_WIDGET (di.object[TOPLEVEL]));
 		gtk_main ();
 		g_object_unref (di.status_icon);
