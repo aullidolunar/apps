@@ -1,5 +1,6 @@
-Hi people:
+gtk2-alarm 1.0
 
-This wil have updates for my git repository and branches:
+gtk2 alarm utility
 
-30.12.2014 12:11:01: sync wuth master branch and no more "This branch is X commit ahead of master"
+25.01.2015 16:32:47: initial upload
+
