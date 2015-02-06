@@ -1,0 +1,13 @@
+// Generated from config.h.in using cmake version @CMAKE_VERSION@
+
+#define PACKAGE_AUTHOR				"@AUTHOR@"
+#define PACKAGE_NAME				"@PROJECT_NAME@"
+#define PACKAGE_VERSION 			"@PROJECT_VERSION@"
+#define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define GETTEXT_PACKAGE				"@PROJECT_NAME@"
+#define LOCALEDIR 					"@LOCALEDIR@"
+#define DATA_DIR					"@DATA_DIR@"
+#define SELFIE						"@AUTHOR@<@EMAIL@>"
+#define PREFIX						"@CMAKE_INSTALL_PREFIX@"
+#define ICON_PATH					"@DATA_DIR@/@PROJECT_NAME@.png"

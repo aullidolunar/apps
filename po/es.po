@@ -1,0 +1,64 @@
+# Spanish translations for calaca01 package
+# Traducciones al español para el paquete calaca01.
+# Copyright (C) 2015 aullidolunar@gmail.com
+# This file is distributed under the same license as the calaca01 package.
+# Automatically generated, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calaca01 1.0\n"
+"Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
+"POT-Creation-Date: 2015-02-06 11:49-0800\n"
+"PO-Revision-Date: 2015-02-05 23:16-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:8
+msgid "_Application"
+msgstr "_Aplicación"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:14
+msgid "_Help"
+msgstr "Ay_uda"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:17
+msgid "Input servings:"
+msgstr "Ingresa servicios:"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:19
+msgid "Input dishes per serving:"
+msgstr "Ingresa platillos por servicio:"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:21
+msgid "Input number of ovens:"
+msgstr "Ingresa número de hornos:"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:88
+msgid "<b>The results are in</b>"
+msgstr "<b>Llegaron los resultados</b>"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:90
+msgid "You need %1 round to serve"
+msgid_plural "You need %1 rounds to serve"
+msgstr[0] "Necesitas %1 ronda por servir"
+msgstr[1] "Necesitas %1 rondas más por servir"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:91
+msgid "and %1 dish more"
+msgid_plural "and %1 dishes more"
+msgstr[0] "y %1 platillo adicional"
+msgstr[1] "y %1 platillos más"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:106
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/build/calaca01.desktop.in.h:1
+msgid "gtkmm test application"
+msgstr "Aplicación de prueba gtkmm"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:114
+msgid "Icon"
+msgstr "Ícono"
