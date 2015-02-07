@@ -8,7 +8,7 @@
 # cmake -DENABLE_DEBUG=ON -DENABLE_MAINTAINER=ON ../
 
 cmake_minimum_required (VERSION 3.0)
-project ("calaca01" VERSION "1.0" LANGUAGES CXX)
+project ("calaca01" VERSION "1.1" LANGUAGES CXX)
 set (AUTHOR "Joel Almeida García")
 set (EMAIL "aullidolunar@gmail.com")
 

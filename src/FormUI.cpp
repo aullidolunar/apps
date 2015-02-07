@@ -14,11 +14,11 @@ FormUI::FormUI () {
 	Gtk::MenuItem *miHelp = Gtk::manage (new Gtk::MenuItem (_("_Help"), true));
 	Gtk::Menu *mHelp = Gtk::manage (new Gtk::Menu);
 	Gtk::ImageMenuItem *iAbout = Gtk::manage (new Gtk::ImageMenuItem (Gtk::Stock::ABOUT));
-	Gtk::Label *label1 = Gtk::manage (new Gtk::Label (_("Input servings:")));
+	Gtk::Label *label1 = Gtk::manage (new Gtk::Label (_("Input servings:"), Gtk::ALIGN_START));
 	_s = Gtk::manage (new Gtk::Entry);
-	Gtk::Label *label2 = Gtk::manage (new Gtk::Label (_("Input dishes per serving:")));
+	Gtk::Label *label2 = Gtk::manage (new Gtk::Label (_("Input dishes per serving:"), Gtk::ALIGN_START));
 	_d = Gtk::manage (new Gtk::Entry);
-	Gtk::Label *label3 = Gtk::manage (new Gtk::Label (_("Input number of ovens:")));
+	Gtk::Label *label3 = Gtk::manage (new Gtk::Label (_("Input number of ovens:"), Gtk::ALIGN_START));
 	_o = Gtk::manage (new Gtk::Entry);
 	/* set window props */
 	set_title (PACKAGE_STRING);
@@ -28,7 +28,6 @@ FormUI::FormUI () {
 	set_menu_item_props (iExecute, GDK_e, Gdk::CONTROL_MASK);
 	set_menu_item_props (iAbout, GDK_a, Gdk::CONTROL_MASK);
 	iExecute->set_sensitive (false);
-	label1->set_justify (Gtk::JUSTIFY_LEFT);
 	table->set_border_width (10);
 	/* set some signal handlers */
 	iReset->signal_activate().connect (sigc::mem_fun (*this, &FormUI::on_reset_activated) );
@@ -52,11 +51,11 @@ FormUI::FormUI () {
 	miHelp->set_submenu (*mHelp);
 	menuBar->append (*miHelp);
 	centerWidget->pack_start (*menuBar, false, false, 0);
-	table->attach (*label1, 0, 1, 0, 1, Gtk::SHRINK, Gtk::SHRINK);
+	table->attach (*label1, 0, 1, 0, 1, Gtk::SHRINK|Gtk::FILL, Gtk::SHRINK|Gtk::FILL);
 	table->attach (*_s, 1, 2, 0, 1);
-	table->attach (*label2, 0, 1, 1, 2, Gtk::SHRINK);
+	table->attach (*label2, 0, 1, 1, 2, Gtk::SHRINK|Gtk::FILL, Gtk::SHRINK|Gtk::FILL);
 	table->attach (*_d, 1, 2, 1, 2);
-	table->attach (*label3, 0, 1, 2, 3, Gtk::SHRINK);
+	table->attach (*label3, 0, 1, 2, 3, Gtk::SHRINK|Gtk::FILL, Gtk::SHRINK|Gtk::FILL);
 	table->attach (*_o, 1, 2, 2, 3);
 	centerWidget->pack_start (*table);
 	add (*centerWidget);
