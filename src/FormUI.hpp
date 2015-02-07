@@ -14,7 +14,7 @@ class FormUI : public Gtk::Window
 		FormUI ();
 		virtual ~FormUI ();
 	protected:
-		void set_menu_item_props (Gtk::ImageMenuItem*, guint, Gdk::ModifierType/*, void* */);
+		void set_menu_item_props (Gtk::ImageMenuItem*, guint, Gdk::ModifierType);
 		void on_reset_activated ();
 		void on_execute_activated ();
 		void on_quit_activated ();

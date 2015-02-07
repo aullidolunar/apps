@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: calaca01 1.0\n"
+"Project-Id-Version: calaca01 1.2\n"
 "Report-Msgid-Bugs-To: aullidolunar@gmail.com\n"
-"POT-Creation-Date: 2015-02-06 11:49-0800\n"
+"POT-Creation-Date: 2015-02-07 06:59-0800\n"
 "PO-Revision-Date: 2015-02-05 23:16-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -38,27 +38,31 @@ msgstr "Ingresa platillos por servicio:"
 msgid "Input number of ovens:"
 msgstr "Ingresa número de hornos:"
 
-#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:88
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:87
 msgid "<b>The results are in</b>"
 msgstr "<b>Llegaron los resultados</b>"
 
-#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:90
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:89
 msgid "You need %1 round to serve"
 msgid_plural "You need %1 rounds to serve"
 msgstr[0] "Necesitas %1 ronda por servir"
 msgstr[1] "Necesitas %1 rondas más por servir"
 
-#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:91
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:90
 msgid "and %1 dish more"
 msgid_plural "and %1 dishes more"
 msgstr[0] "y %1 platillo adicional"
 msgstr[1] "y %1 platillos más"
 
-#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:106
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:105
 #: /home/joel/Documentos/g++/gtkmm2/calaca01/build/calaca01.desktop.in.h:1
 msgid "gtkmm test application"
 msgstr "Aplicación de prueba gtkmm"
 
-#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:114
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:109
+msgid "Visit Github project site"
+msgstr "Visitar el sitio del proyecto en Github"
+
+#: /home/joel/Documentos/g++/gtkmm2/calaca01/src/FormUI.cpp:115
 msgid "Icon"
 msgstr "Ícono"

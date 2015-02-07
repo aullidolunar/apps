@@ -66,9 +66,9 @@ FormUI::FormUI () {
 FormUI::~FormUI () {
 }
 
-void FormUI::set_menu_item_props (Gtk::ImageMenuItem* i, guint k, Gdk::ModifierType m/*, void* func*/) {
+void FormUI::set_menu_item_props (Gtk::ImageMenuItem* i, guint k, Gdk::ModifierType m) {
 	i->add_accelerator ("activate", get_accel_group (), k, m, Gtk::ACCEL_VISIBLE);
-	//i->signal_activate().connect (sigc::mem_fun (*this, func) );
+	//i->signal_activate().connect (sigc::mem_fun (*this, sig) );
 }
 
 void FormUI::on_reset_activated () {
@@ -105,6 +105,8 @@ void FormUI::on_about_activated () {
 	about.set_comments (_("gtkmm test application"));
 	about.set_license ("http://www.gnu.org/copyleft/gpl.html");
 	about.set_copyright (Glib::ustring::compose ("copyleft %1 2015 %2", "ɔ", PACKAGE_AUTHOR));
+	about.set_website ("https://github.com/aullidolunar/apps/tree/gtkmm2-calaca01");
+	about.set_website_label (_("Visit Github project site"));
 	std::vector<Glib::ustring> list_authors;
 	list_authors.push_back (SELFIE);
 	about.set_authors (list_authors);
