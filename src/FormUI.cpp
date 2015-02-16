@@ -24,16 +24,13 @@ FormUI::FormUI () {
 	set_title (PACKAGE_STRING);
 	set_icon_from_file (ICON_PATH);
 	/* set widgets props */
-	set_menu_item_props (iReset, GDK_r, Gdk::CONTROL_MASK);
-	set_menu_item_props (iExecute, GDK_e, Gdk::CONTROL_MASK);
-	set_menu_item_props (iAbout, GDK_a, Gdk::CONTROL_MASK);
+	set_menu_item_props (iReset, GDK_r, Gdk::CONTROL_MASK, &FormUI::on_reset_activated);
+	set_menu_item_props (iExecute, GDK_e, Gdk::CONTROL_MASK, &FormUI::on_execute_activated);
+	set_menu_item_props (iAbout, GDK_a, Gdk::CONTROL_MASK, &FormUI::on_about_activated);
 	iExecute->set_sensitive (false);
 	table->set_border_width (10);
 	/* set some signal handlers */
-	iReset->signal_activate().connect (sigc::mem_fun (*this, &FormUI::on_reset_activated) );
-	iExecute->signal_activate().connect (sigc::mem_fun (*this, &FormUI::on_execute_activated) );
 	iQuit->signal_activate().connect (sigc::mem_fun (*this, &FormUI::on_quit_activated) );
-	iAbout->signal_activate().connect (sigc::mem_fun (*this, &FormUI::on_about_activated) );
 	_s->signal_key_press_event().connect (sigc::mem_fun (*this, &FormUI::on_any_entry_press_event), false);
 	_s->signal_changed().connect (sigc::mem_fun (*this, &FormUI::on_any_entry_text_changed));
 	_d->signal_key_press_event().connect (sigc::mem_fun (*this, &FormUI::on_any_entry_press_event), false);
@@ -66,9 +63,9 @@ FormUI::FormUI () {
 FormUI::~FormUI () {
 }
 
-void FormUI::set_menu_item_props (Gtk::ImageMenuItem* i, guint k, Gdk::ModifierType m) {
+void FormUI::set_menu_item_props (Gtk::ImageMenuItem* i, guint k, Gdk::ModifierType m, function_ptr fun) {
 	i->add_accelerator ("activate", get_accel_group (), k, m, Gtk::ACCEL_VISIBLE);
-	//i->signal_activate().connect (sigc::mem_fun (*this, sig) );
+	i->signal_activate().connect (sigc::mem_fun (*this, fun) );
 }
 
 void FormUI::on_reset_activated () {
