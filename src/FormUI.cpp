@@ -9,7 +9,7 @@ FormUI::FormUI (BaseObjectType* parent, const Glib::RefPtr<Gtk::Builder>& builde
 	m_refBuilder->get_widget ("entry1", entry);
 	m_refBuilder->get_widget ("scrolledwindow2", sw2);
 	m_refBuilder->get_widget ("treeview1", tv);
-	/* I haven't find a solution for using a liststore from builder
+	/* I haven't find a solution for using a liststore from builder file
 	and bypass the warning: "Unable to convert from GdkPixbuf to gtkmm__GdkPixbuf"
 	* I'll keep this line to remember how to cast other objects
 	store = Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_refBuilder->get_object ("liststore1"));
@@ -77,10 +77,16 @@ void FormUI::spawn_in_terminal () {
 	argv.push_back ("320k");
 	argv.push_back (row[modelColumns.m_colStr]);
 	terminal.fork_command (YOUTUBEDL_PATH, argv, envv, Glib::get_user_special_dir (G_USER_DIRECTORY_MUSIC));
+	row[modelColumns.m_colPixbuf] = Gdk::Pixbuf::create_from_file (DATA_DIR "/current.png", 16, 16);
 }
 
 void FormUI::on_child_exited () {
-	// terminal.get_child_exit_status ();
+	Gtk::TreeModel::Row row = *currentItem;
+	if (!terminal.get_child_exit_status ()) {
+		row[modelColumns.m_colPixbuf] = Gdk::Pixbuf::create_from_file (DATA_DIR "/download.png", 16, 16);
+	} else {
+		row[modelColumns.m_colPixbuf] = Gdk::Pixbuf::create_from_file (DATA_DIR "/error.png", 16, 16);
+	}
 	currentItem++;
 	if (currentItem != lastItem) {
 		spawn_in_terminal ();
