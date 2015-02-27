@@ -16,6 +16,7 @@
 #include <gtkmm/liststore.h>
 #include <gtkmm/treeiter.h>
 #include <gtkmm/treeview.h>
+#include <gtkmm/messagedialog.h>
 #include <iostream>
 #include <vector>
 

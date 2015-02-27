@@ -27,6 +27,9 @@ class FormUI : public Gtk::Window
 		void on_entry_changed ();
 		void on_add_clicked ();
 		void toggle (bool state = true);
+		bool cb_on_delete_event (GdkEventAny*);
+		bool show_mb ();
+		GPid _pid;
 		class ModelColumns : public Gtk::TreeModel::ColumnRecord
 		{
 			public:
