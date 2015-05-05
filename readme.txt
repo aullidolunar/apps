@@ -12,7 +12,7 @@ What you need:
 
 How to build:
 * In the project root directory, create a directory called "build"
-* run this command:
+* run these commands from build directory:
 + cmake -G "MSYS Makefiles" ..
 + make
 
