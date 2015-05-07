@@ -24,7 +24,7 @@ else ()
 	link_directories (${GTKMM2_LIBRARY_DIRS})
 	set (LINKER_LIBS ${LINKER_LIBS} ${GTKMM2_LIBRARIES})
 	set (LINKER_FLAGS ${LINKER_FLAGS} ${GTKMM2_LINK_FLAGS})
-	message (STATUS "Need gtkmm2 ${TOOLKIT_VERSION_NEED}: Found (have ${gtkmm2_VERSION})")
+	message (STATUS "Need gtkmm2 ${TOOLKIT_VERSION_NEED}: Found (have ${GTKMM2_VERSION})")
 endif ()
 
 # Try to find libnotifymm >= 0.6 for notifications, if not use inner ugly dialog notification -_-
@@ -75,7 +75,7 @@ if (EXISTS "${PROJECT_SOURCE_DIR}/src/resource.rc.in" AND WIN32)
 	set (RESOURCE_OBJECT "${PROJECT_BINARY_DIR}/resource.o")
 	configure_file ("${RESOURCE_FILE_IN}" "${RESOURCE_FILE_OUT}")
 	add_custom_command (
-		OUTPUT ${RESOURCE_OBJECT}
+		OUTPUT "${RESOURCE_OBJECT}"
 		COMMAND ${RC_PATH} -I${PROJECT_SOURCE_DIR}/src -I${PROJECT_BINARY_DIR} "${RESOURCE_FILE_OUT}" -o "${RESOURCE_OBJECT}"
 		COMMENT "Compiling resource file"
 	)
@@ -92,6 +92,32 @@ if (TARGET resourcefile AND WIN32)
 endif ()
 target_link_libraries (${PROJECT_NAME} ${LINKER_LIBS})
 set_target_properties (${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
-
 # install destination
 install (TARGETS ${PROJECT_NAME} DESTINATION "${_PROJECT_INSTALL_DIR}")
+
+# generate .desktop file
+if ((EXISTS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in") AND UNIX)
+	add_custom_command(
+		TARGET ${PROJECT_NAME} POST_BUILD
+		WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+		COMMAND ${INTLTOOLMERGE} -d -u "../po" "${PROJECT_NAME}.desktop.in" "${PROJECT_NAME}.desktop"
+		COMMENT "Genearating desktop file"
+	)
+	install (FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION "share/applications")
+endif ()
+
+# generate .mo files from .po files
+if (${PO_FILES_LEN} GREATER 0)
+	foreach(_poFile ${PO_FILES})
+		get_filename_component(_lang ${_poFile} NAME_WE)
+		add_custom_command(
+			TARGET ${PROJECT_NAME} POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E make_directory "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
+			COMMAND ${MSGFMT} ${_poFile} -o "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
+			COMMENT "Building ${_lang} translation"
+		)
+		install (FILES "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo" DESTINATION "${LOCALE_PREFIX}/${_lang}/LC_MESSAGES")
+	endforeach(_poFile ${PO_FILES})
+endif (${PO_FILES_LEN} GREATER 0)
+
+# EOF:~

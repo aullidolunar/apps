@@ -3,7 +3,7 @@ gtkmm2-alarm:
 My first crossplatform gtkmm2 application alarm.
 
 What you need:
-* cmake
+* cmake > 3.0.0
 * gtkmm2 > 2.20
 * SDL2
 * SDL2_mixer
@@ -21,3 +21,4 @@ Problems? Contact me (See ./CMakeLists.txt)
 Version history:
 
 1.0 rev0 (05.05.2015): initial release
+1.0 rev1 (06.05.2015): fix cmake script bugs

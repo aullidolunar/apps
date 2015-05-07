@@ -22,7 +22,7 @@ set (_PN "alarm")
 # package version
 set (_PV "1.0")
 # package rev number
-set (_PR "0")
+set (_PR "1")
 # package long name
 set (_PLN "${_PT}-${_PN}-${_PV}")
 # package long version 
@@ -107,8 +107,6 @@ if (EXISTS "${PROJECT_SOURCE_DIR}/src/config.h.in")
 	add_definitions (-DHAVE_CONFIG_H)
 endif ()
 
-add_subdirectory (src)
-
 if (EXISTS "${PROJECT_SOURCE_DIR}/data/CMakeLists.txt")
 	add_subdirectory (data)
 endif ()
@@ -116,6 +114,8 @@ endif ()
 if (EXISTS "${PROJECT_SOURCE_DIR}/po/CMakeLists.txt")
 	add_subdirectory (po)
 endif ()
+
+add_subdirectory (src)
 
 # do local test
 add_custom_target (run COMMAND ${PROJECT_BINARY_DIR}/${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX} DEPENDS ${PROJECT_NAME})

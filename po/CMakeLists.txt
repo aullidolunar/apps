@@ -76,40 +76,10 @@ if (${ENABLE_MAINTAINER})
 	)
 endif ()
 
-# only generate these targets if we actually have po files
-file (GLOB PO_FILES "${PROJECT_SOURCE_DIR}/po/*.po")
-list (LENGTH PO_FILES PO_FILES_LEN)
-if (PO_FILES_LEN GREATER 0)
-	if ((EXISTS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop.in") AND UNIX)
-		add_custom_command(
-			OUTPUT "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop"
-			WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-			COMMAND ${INTLTOOLMERGE} -d -u "../po" "${PROJECT_NAME}.desktop.in" "${PROJECT_NAME}.desktop"
-			COMMENT "Creating desktop file"
-		)
-		add_custom_target (desktopfile DEPENDS "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop")
-		add_dependencies (${PROJECT_NAME} desktopfile)
-		install (FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION "share/applications")
-	endif ()
-	foreach(_poFile ${PO_FILES})
-		get_filename_component(_lang ${_poFile} NAME_WE)
-		if (NOT EXISTS "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
-			add_custom_command (
-				OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
-				COMMAND ${CMAKE_COMMAND} -E make_directory "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
-				COMMENT "Reading locale ${_lang}"
-			)
-			# set (LOCALE_DIRS ${LOCALE_DIRS} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/")
-		endif ()
-		add_custom_command(
-			OUTPUT "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
-			DEPENDS "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/"
-			COMMAND ${MSGFMT} ${_poFile} -o "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo"
-			COMMENT "Building ${_lang} translation"
-		)
-		set (MO_FILES ${MO_FILES} "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo")
-		install (FILES "${PROJECT_BINARY_DIR}/locale/${_lang}/LC_MESSAGES/${PROJECT_NAME}.mo" DESTINATION "${LOCALE_PREFIX}/${_lang}/LC_MESSAGES")
-	endforeach(_poFile ${PO_FILES})
-	add_custom_target (locales DEPENDS ${MO_FILES})
-	add_dependencies (${PROJECT_NAME} locales)
-endif ()
+# Grab some po files
+file (GLOB _PO_FILES "${PROJECT_SOURCE_DIR}/po/*.po")
+list (LENGTH _PO_FILES _PO_FILES_LEN)
+set (PO_FILES ${_PO_FILES} PARENT_SCOPE)
+set (PO_FILES_LEN ${_PO_FILES_LEN} PARENT_SCOPE)
+
+# EOF:~
