@@ -1,0 +1,29 @@
+// Generated from config.h.in using cmake version @CMAKE_VERSION@
+#ifndef CONFIG_H_INCLUDED
+#define CONFIG_H_INCLUDED
+
+// build stuff
+#define PREFIX						"@CMAKE_INSTALL_PREFIX@"
+#define PROJECT_INSTALL_DIR			"@_PROJECT_INSTALL_DIR@"
+#define LOCALEDIR 					"@LOCALEDIR@"
+#define DATA_DIR					"@DATA_DIR@"
+#define RC_PATH						"@RC_PATH@"
+#define TOOLKIT						"@_PT@"
+
+// project stuff
+#define PACKAGE_ID					"org.@_PT@.@PROJECT_NAME@"
+#define PACKAGE_NAME				"@PROJECT_NAME@"
+#define PACKAGE_VERSION 			"@PROJECT_VERSION@"
+#define PACKAGE_REVISION			"@_PR@"
+#define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
+#define PACKAGE_STRING_LONG			"@PROJECT_NAME@ @PROJECT_VERSION@ rev@_PR@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define SELFIE						"@AUTHOR@<@EMAIL@>"
+
+// data
+#define PACKAGE_ICON				"@DATA_DIR@/@PROJECT_NAME@.png"
+#define PACKAGE_ICO					"@DATA_DIR@/@PROJECT_NAME@.ico"
+#define PACKAGE_BUILDER				"@DATA_DIR@/@PROJECT_NAME@.builder"
+#define PACKAGE_SOUND				"@DATA_DIR@/@PROJECT_NAME@.ogg"
+
+#endif

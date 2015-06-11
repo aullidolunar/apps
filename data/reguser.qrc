@@ -1,0 +1,8 @@
+<RCC>
+  <qresource>
+    <file alias="exit">exit.png</file>
+    <file alias="about">bullet.png</file>
+    <file alias="ok">smile.png</file>
+    <file alias="main">reguser.png</file>
+  </qresource>
+</RCC>
