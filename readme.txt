@@ -1,5 +1,9 @@
-Hi people:
+qt-alarm
 
-This wil have updates for my git repository and branches:
+It's a simple qt4 alarm utility.
 
-30.12.2014 12:11:01: sync wuth master branch and no more "This branch is X commit ahead of master"
+You need to build it:
+
+cmake >= 3.0
+QT4 >= 4.6
+phonon

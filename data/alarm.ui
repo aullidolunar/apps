@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>228</width>
+    <height>148</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="alarm.qrc">
+    <normaloff>:/main</normaloff>:/main</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0" colspan="3">
+     <widget class="QPlainTextEdit" name="editText">
+      <property name="toolTip">
+       <string>Something to remember</string>
+      </property>
+      <property name="plainText">
+       <string notr="true"/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="timeLabel">
+      <property name="text">
+       <string notr="true">00:00/01:00</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Time elapsed</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>228</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Application">
+    <property name="title">
+     <string>&amp;Application</string>
+    </property>
+    <addaction name="itemStart"/>
+    <addaction name="separator"/>
+    <addaction name="itemPref"/>
+    <addaction name="separator"/>
+    <addaction name="action_Close"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="itemAboutQt"/>
+    <addaction name="itemAbout"/>
+    <addaction name="separator"/>
+    <addaction name="itemProject"/>
+   </widget>
+   <addaction name="menu_Application"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <action name="itemStart">
+   <property name="icon">
+    <iconset resource="alarm.qrc">
+     <normaloff>:/start</normaloff>:/start</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Start</string>
+   </property>
+  </action>
+  <action name="itemPref">
+   <property name="icon">
+    <iconset resource="alarm.qrc">
+     <normaloff>:/pref</normaloff>:/pref</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Preferences...</string>
+   </property>
+  </action>
+  <action name="action_Close">
+   <property name="icon">
+    <iconset resource="alarm.qrc">
+     <normaloff>:/exit</normaloff>:/exit</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="itemAboutQt">
+   <property name="icon">
+    <iconset resource="alarm.qrc">
+     <normaloff>:/about-qt4</normaloff>:/about-qt4</iconset>
+   </property>
+   <property name="text">
+    <string>About &amp;QT ...</string>
+   </property>
+  </action>
+  <action name="itemAbout">
+   <property name="icon">
+    <iconset resource="alarm.qrc">
+     <normaloff>:/about</normaloff>:/about</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;About ...</string>
+   </property>
+  </action>
+  <action name="itemProject">
+   <property name="icon">
+    <iconset resource="alarm.qrc">
+     <normaloff>:/github</normaloff>:/github</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Proyect home</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="alarm.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>action_Close</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

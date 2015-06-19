@@ -1,0 +1,12 @@
+<RCC>
+  <qresource>
+    <file alias="github">github.png</file>
+    <file alias="about-qt4">about-qt4.png</file>
+    <file alias="about">about.png</file>
+    <file alias="exit">exit.png</file>
+    <file alias="pref">pref.png</file>
+    <file alias="stop">stop.png</file>
+    <file alias="start">start.png</file>
+    <file alias="main">alarm.ico</file>
+  </qresource>
+</RCC>
