@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QLocale>
+#include <QLibraryInfo>
 #include <QTranslator>
 #include <QTextCodec>
 #include <QMessageBox>

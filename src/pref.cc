@@ -3,6 +3,7 @@
 PrefDialog::PrefDialog (QWidget *parent) : QDialog (parent), ui (new Ui::Dialog)
 {
 	ui->setupUi (this);
+	setWindowTitle (QString("%1 %2").arg(tr("Preferences dialog for")).arg(PACKAGE_STRING_LONG));
 }
 
 void PrefDialog::loadValues (int _t, bool _n, bool _s, bool _r) {

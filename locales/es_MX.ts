@@ -4,37 +4,37 @@
 <context>
     <name>AlarmUI</name>
     <message>
-        <location filename="../src/alarm.cc" line="75"/>
+        <location filename="../src/alarm.cc" line="77"/>
         <source>&amp;Stop</source>
         <translation type="unfinished">&amp;Detener</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="75"/>
+        <location filename="../src/alarm.cc" line="77"/>
         <source>&amp;Start</source>
         <translation type="unfinished">&amp;Iniciar</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="84"/>
+        <location filename="../src/alarm.cc" line="86"/>
         <source>A Qt alarm has</source>
         <translation type="unfinished">Un alarma QT ha</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="84"/>
+        <location filename="../src/alarm.cc" line="86"/>
         <source>started</source>
         <translation type="unfinished">iniciado</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="84"/>
+        <location filename="../src/alarm.cc" line="86"/>
         <source>stopped</source>
         <translation type="unfinished">terminado</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="100"/>
+        <location filename="../src/alarm.cc" line="102"/>
         <source>About</source>
         <translation type="unfinished">Acerca de</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="100"/>
+        <location filename="../src/alarm.cc" line="102"/>
         <source>QT4 alarm utility</source>
         <translation type="unfinished">Herramienta de alarma QT</translation>
     </message>
@@ -118,6 +118,14 @@
         <location filename="../data/alarm.ui" line="146"/>
         <source>&amp;Proyect home</source>
         <translation type="unfinished">&amp;Sitio del proyecto</translation>
+    </message>
+</context>
+<context>
+    <name>PrefDialog</name>
+    <message>
+        <location filename="../src/pref.cc" line="6"/>
+        <source>Preferences dialog for</source>
+        <translation type="unfinished">Ventana de preferencias para</translation>
     </message>
 </context>
 </TS>
