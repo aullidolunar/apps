@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Version=1.0
+Name=@PROJECT_NAME@
+Comment=QT4 alarm utility
+Comment[ES]=Herramienta de alarm QT
+Exec=@PROJECT_NAME@
+Icon=@DATA_DIR@/@PROJECT_NAME@.png
+Terminal=false
+Categories=Utility;
