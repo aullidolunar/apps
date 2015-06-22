@@ -6,37 +6,37 @@
     <message>
         <location filename="../src/alarm.cc" line="77"/>
         <source>&amp;Stop</source>
-        <translation type="unfinished">&amp;Detener</translation>
+        <translation>&amp;Detener</translation>
     </message>
     <message>
         <location filename="../src/alarm.cc" line="77"/>
         <source>&amp;Start</source>
-        <translation type="unfinished">&amp;Iniciar</translation>
+        <translation>&amp;Iniciar</translation>
     </message>
     <message>
         <location filename="../src/alarm.cc" line="86"/>
         <source>A Qt alarm has</source>
-        <translation type="unfinished">Un alarma QT ha</translation>
+        <translation>Una alarma QT ha</translation>
     </message>
     <message>
         <location filename="../src/alarm.cc" line="86"/>
         <source>started</source>
-        <translation type="unfinished">iniciado</translation>
+        <translation>iniciado</translation>
     </message>
     <message>
         <location filename="../src/alarm.cc" line="86"/>
         <source>stopped</source>
-        <translation type="unfinished">terminado</translation>
+        <translation>terminado</translation>
     </message>
     <message>
         <location filename="../src/alarm.cc" line="102"/>
         <source>About</source>
-        <translation type="unfinished">Acerca de</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location filename="../src/alarm.cc" line="102"/>
         <source>QT4 alarm utility</source>
-        <translation type="unfinished">Herramienta de alarma QT</translation>
+        <translation>Herramienta de alarma QT</translation>
     </message>
 </context>
 <context>
@@ -44,27 +44,27 @@
     <message>
         <location filename="../data/pref.ui" line="26"/>
         <source>Preferences</source>
-        <translation type="unfinished">Preferencias</translation>
+        <translation>Preferencias</translation>
     </message>
     <message>
         <location filename="../data/pref.ui" line="35"/>
         <source>Enable notifications</source>
-        <translation type="unfinished">Habilitar notificaciones</translation>
+        <translation>Habilitar notificaciones</translation>
     </message>
     <message>
         <location filename="../data/pref.ui" line="45"/>
         <source>Enable sound alarm</source>
-        <translation type="unfinished">Habilitar sonido de alarma</translation>
+        <translation>Habilitar sonido de alarma</translation>
     </message>
     <message>
         <location filename="../data/pref.ui" line="78"/>
         <source>Set timeout in minutes</source>
-        <translation type="unfinished">Ajustar tiempo en minutos</translation>
+        <translation>Ajustar tiempo en minutos</translation>
     </message>
     <message>
         <location filename="../data/pref.ui" line="85"/>
         <source>Reset timer on manual start</source>
-        <translation type="unfinished">Reiniciar segundero al iniciar manualmente</translation>
+        <translation>Reiniciar segundero al comenzar manualmente</translation>
     </message>
 </context>
 <context>
@@ -72,52 +72,56 @@
     <message>
         <location filename="../data/alarm.ui" line="25"/>
         <source>Something to remember</source>
-        <translation type="unfinished">Algo para recordar</translation>
+        <translation>Algo para recordar</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="42"/>
         <source>Time elapsed</source>
-        <translation type="unfinished">Tiempo transcurrido</translation>
+        <translation>Tiempo transcurrido</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="75"/>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Aplicación</translation>
+        <translation>&amp;Aplicación</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="85"/>
         <source>&amp;Help</source>
-        <translation type="unfinished">A&amp;yuda</translation>
+        <translation>A&amp;yuda</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="101"/>
         <source>&amp;Start</source>
-        <translation type="unfinished">&amp;Iniciar</translation>
+        <translation>&amp;Iniciar</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="110"/>
         <source>&amp;Preferences...</source>
-        <translation type="unfinished">&amp;Preferencias...</translation>
+        <translation>&amp;Preferencias...</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="119"/>
         <source>&amp;Exit</source>
-        <translation type="unfinished">&amp;Salir</translation>
+        <translation>&amp;Salir</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="128"/>
         <source>About &amp;QT ...</source>
-        <translation type="unfinished">Acerca de &amp;QT...</translation>
+        <translation>Acerca de &amp;QT...</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="137"/>
         <source>&amp;About ...</source>
-        <translation type="unfinished">&amp;Acerca de...</translation>
+        <translation>&amp;Acerca de...</translation>
     </message>
     <message>
         <location filename="../data/alarm.ui" line="146"/>
+        <source>&amp;Project in Github...</source>
+        <translation>&amp;Proyecto en Github...</translation>
+    </message>
+    <message>
         <source>&amp;Proyect home</source>
-        <translation type="unfinished">&amp;Sitio del proyecto</translation>
+        <translation type="obsolete">&amp;Sitio del proyecto</translation>
     </message>
 </context>
 <context>
@@ -125,7 +129,7 @@
     <message>
         <location filename="../src/pref.cc" line="6"/>
         <source>Preferences dialog for</source>
-        <translation type="unfinished">Ventana de preferencias para</translation>
+        <translation>Ventana de preferencias para</translation>
     </message>
 </context>
 </TS>
