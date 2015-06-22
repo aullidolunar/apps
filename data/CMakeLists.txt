@@ -8,3 +8,5 @@ if (EXISTS "${_DESKTOP_FILE_IN}" AND UNIX)
 	install (FILES "${_DESKTOP_FILE}" DESTINATION "share/applications")
 	install (FILES "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.png" DESTINATION "share/${PROJECT_NAME}")
 endif ()
+
+install (FILES "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.mp3" DESTINATION "share/${PROJECT_NAME}")
