@@ -45,6 +45,7 @@ void AlarmUI::tick() {
 		min++;
 	}
 	if (min == timeout) {
+		min = 0;
 		m_timer->stop ();
 		showNormal ();
 		toggleui (false);
@@ -64,6 +65,7 @@ void AlarmUI::onStart () {
 	bool state = false;
 	if (!m_timer->isActive ()) {
 		// start here
+		if (use_reset) sec = 0;
 		m_timer->start (1000);
 		state = true;
 	} else {
