@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>322</width>
-    <height>189</height>
+    <width>263</width>
+    <height>232</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,6 +50,22 @@
        </item>
        <item row="3" column="0">
         <widget class="QLineEdit" name="_organization"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>Additional preferences</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="balloon_check">
+         <property name="text">
+          <string>Enabled balloon message tips</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -112,8 +128,6 @@
      </layout>
     </item>
    </layout>
-   <zorder>groupBox</zorder>
-   <zorder>line</zorder>
   </widget>
  </widget>
  <resources>

@@ -6,7 +6,7 @@ set (_SOURCES reguser.cpp main.cpp)
 # headers
 set (_HEADERS reguser.hpp)
 
-find_package (Qt4 4.6 REQUIRED)
+find_package (Qt4 4.6 COMPONENTS QtCore QtGui REQUIRED)
 include (${QT_USE_FILE})
 
 # qt-ish stuff (don't remove)
@@ -40,7 +40,6 @@ if (EXISTS "${PROJECT_SOURCE_DIR}/src/resource.rc.in" AND WIN32)
 		COMMENT "Compiling resource file"
 	)
 	add_custom_target (resourcefile DEPENDS ${RESOURCE_OBJECT})
-	# yes, you need the next line, don't forget it
 	set_source_files_properties (${RESOURCE_OBJECT} PROPERTIES EXTERNAL_OBJECT true GENERATED true)
 	set (_SOURCES ${_SOURCES} ${RESOURCE_OBJECT})
 endif ()

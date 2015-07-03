@@ -2,7 +2,8 @@
 
 RegUser::RegUser (QWidget *parent) :
 	QMainWindow (parent), ui (new Ui::MainWindow),
-	RegEdit ("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", QSettings::NativeFormat, this)
+	RegEdit1 ("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", QSettings::NativeFormat, this),
+	RegEdit2 ("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced", QSettings::NativeFormat, this)
 {
 	ui->setupUi (this);
 	setWindowTitle (PACKAGE_STRING_LONG);
@@ -10,10 +11,12 @@ RegUser::RegUser (QWidget *parent) :
 	setEnabled (false);
 	setToolTip (tr("This is app must build in Win32 environments"));
 #else
-	QString username = RegEdit.value ("RegisteredOwner").toString();
-	QString organization = RegEdit.value ("RegisteredOrganization").toString();
+	QString username = RegEdit1.value ("RegisteredOwner").toString();
+	QString organization = RegEdit1.value ("RegisteredOrganization").toString();
 	ui->_username->setText (username);
 	ui->_organization->setText (organization);
+	bool enabled = RegEdit2.value ("EnableBalloonTips").toBool();
+	ui->balloon_check->setChecked (enabled);
 	connect (ui->pushButton, SIGNAL(clicked()), this, SLOT(onSave()));
 	connect (ui->pushButton_3, SIGNAL(clicked()), this, SLOT(onAbout()));
 #endif
@@ -25,18 +28,22 @@ RegUser::~RegUser () {
 }
 
 void RegUser::onSave () {
-	RegEdit.setValue ("RegisteredOwner", ui->_username->text());
-	RegEdit.setValue ("RegisteredOrganization", ui->_organization->text());
-	QMessageBox::information (this, PACKAGE_STRING_LONG, tr("Data has been saved"));
+	RegEdit1.setValue ("RegisteredOwner", ui->_username->text());
+	RegEdit1.setValue ("RegisteredOrganization", ui->_organization->text());
+	RegEdit2.setValue ("EnableBalloonTips", ui->balloon_check->isChecked ());
+	QString msg = QString("%1\n\n%2").arg(tr("Data has been saved")).arg(tr("You need to reboot your PC to apply the additional preferences"));
+	QMessageBox::information (this, PACKAGE_STRING_LONG, msg);
 }
 
 void RegUser::onAbout () {
 #ifdef WIN32
 	HWND hwnd = winId();
-	QPixmap Icon(":/main");
-	LPCWSTR _title = reinterpret_cast<LPCWSTR>(QString(PACKAGE_NAME).utf16());
-	LPCWSTR _desc = reinterpret_cast<LPCWSTR>(QString(tr("Change registered owner and organization")).utf16());
-	::ShellAbout (hwnd, _title, _desc, Icon.toWinHICON ());
+	QPixmap hIcon (":/main");
+	QString title (PACKAGE_NAME);
+	QString desc(tr("Change registered owner and organization"));
+	const wchar_t *_title = reinterpret_cast<const wchar_t*>(title.utf16());
+	const wchar_t *_desc = reinterpret_cast<const wchar_t*>(desc.utf16());
+	::ShellAbout (hwnd, _title, _desc, hIcon.toWinHICON());
 #endif
 }
 

@@ -19,17 +19,27 @@
         <translation>Organización</translation>
     </message>
     <message>
-        <location filename="../data/reguser.ui" line="82"/>
+        <location filename="../data/reguser.ui" line="60"/>
+        <source>Additional preferences</source>
+        <translation>Preferencias adicionales</translation>
+    </message>
+    <message>
+        <location filename="../data/reguser.ui" line="66"/>
+        <source>Enabled balloon message tips</source>
+        <translation>Habilitar mensajes de globo</translation>
+    </message>
+    <message>
+        <location filename="../data/reguser.ui" line="98"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../data/reguser.ui" line="93"/>
+        <location filename="../data/reguser.ui" line="109"/>
         <source>About...</source>
         <translation>Acerca de...</translation>
     </message>
     <message>
-        <location filename="../data/reguser.ui" line="104"/>
+        <location filename="../data/reguser.ui" line="120"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -37,17 +47,22 @@
 <context>
     <name>RegUser</name>
     <message>
-        <location filename="../src/reguser.cpp" line="11"/>
+        <location filename="../src/reguser.cpp" line="12"/>
         <source>This is app must build in Win32 environments</source>
         <translation>Esta aplicación debe compilarse en entornos Win32</translation>
     </message>
     <message>
-        <location filename="../src/reguser.cpp" line="29"/>
+        <location filename="../src/reguser.cpp" line="34"/>
         <source>Data has been saved</source>
         <translation>Los datos han sido guardados</translation>
     </message>
     <message>
-        <location filename="../src/reguser.cpp" line="36"/>
+        <location filename="../src/reguser.cpp" line="34"/>
+        <source>You need to reboot your PC to apply the additional preferences</source>
+        <translation>Necesitas reiniciar tu PC para que se apliquen las preferencias adicionales</translation>
+    </message>
+    <message>
+        <location filename="../src/reguser.cpp" line="43"/>
         <source>Change registered owner and organization</source>
         <translation>Cambiar nombre de usuario y organización</translation>
     </message>

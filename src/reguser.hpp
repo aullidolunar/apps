@@ -27,12 +27,12 @@ namespace Ui {
 	class MainWindow;
 };
 
-
 class RegUser : public QMainWindow {
 Q_OBJECT
 	private:
 		Ui::MainWindow *ui;
-		QSettings RegEdit;
+		QSettings RegEdit1; // this one is for the user and organization reg entry
+		QSettings RegEdit2; // this one is for balloon tips
 	public:
 		RegUser (QWidget *parent = 0);
 		virtual ~RegUser ();
