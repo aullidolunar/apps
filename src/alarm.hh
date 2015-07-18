@@ -60,6 +60,7 @@ Q_OBJECT
 		void onPref ();
 		void onAbout ();
 		void tick ();
+		void onFinishedSound ();
 };
 
 #endif

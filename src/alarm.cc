@@ -12,7 +12,7 @@ AlarmUI::AlarmUI (QWidget *parent) :
 	use_sound = true;
 	use_reset = false;
 	/* init phonon */
-	m_sound = Phonon::createPlayer(Phonon::MusicCategory, QUrl::fromLocalFile(PACKAGE_SOUND));
+	m_sound = Phonon::createPlayer(Phonon::MusicCategory);
 	/* begin ui */
 	ui->setupUi (this);
 	setWindowTitle (PACKAGE_STRING_LONG);
@@ -27,10 +27,12 @@ AlarmUI::AlarmUI (QWidget *parent) :
 	connect (ui->itemPref, SIGNAL(triggered()), this, SLOT(onPref()));
 	connect (ui->itemAbout, SIGNAL(triggered()), this, SLOT(onAbout()));
 	connect (ui->itemProject, SIGNAL(triggered()), this, SLOT(onProject()));
+	connect (m_sound, SIGNAL(finished()), this, SLOT(onFinishedSound()));
 	Centre();
 }
 
 AlarmUI::~AlarmUI () {
+	if (m_timer->isActive ()) m_timer->stop();
 	m_sound->clear();
 	delete m_sound;
 	delete m_timer;
@@ -48,13 +50,18 @@ void AlarmUI::tick() {
 		min = 0;
 		m_timer->stop ();
 		showNormal ();
-		toggleui (false);
 		if (use_sound) {
 			qDebug() << "playing";
+			m_sound->enqueue (QUrl::fromLocalFile(PACKAGE_SOUND));
 			m_sound->play();
 		}
 	}
 	updateTimeLabel ();
+}
+
+void AlarmUI::onFinishedSound () {
+	toggleui (false);
+	m_sound->clear ();
 }
 
 void AlarmUI::updateTimeLabel () {
@@ -135,6 +142,14 @@ void AlarmUI::trayiconActivated (QSystemTrayIcon::ActivationReason reason) {
 
 void AlarmUI::closeEvent (QCloseEvent* event) {
 	if (m_timer->isActive ()) {
+		int ret = QMessageBox::warning (this, windowTitle(), tr("The alarm is still running, do you want to exit anyway?"), QMessageBox::Yes|QMessageBox::No);
+		if (ret == QMessageBox::Yes) {
+			qDebug() << "Here, right";
+			m_timer->stop ();
+			QApplication::quit();
+		} else {
+			event->ignore ();
+		}
 		event->ignore ();
 	} else {
 		event->accept();

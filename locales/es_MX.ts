@@ -4,39 +4,44 @@
 <context>
     <name>AlarmUI</name>
     <message>
-        <location filename="../src/alarm.cc" line="77"/>
+        <location filename="../src/alarm.cc" line="86"/>
         <source>&amp;Stop</source>
         <translation>&amp;Detener</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="77"/>
+        <location filename="../src/alarm.cc" line="86"/>
         <source>&amp;Start</source>
         <translation>&amp;Iniciar</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="86"/>
+        <location filename="../src/alarm.cc" line="95"/>
         <source>A Qt alarm has</source>
         <translation>Una alarma QT ha</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="86"/>
+        <location filename="../src/alarm.cc" line="95"/>
         <source>started</source>
         <translation>iniciado</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="86"/>
+        <location filename="../src/alarm.cc" line="95"/>
         <source>stopped</source>
         <translation>terminado</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="102"/>
+        <location filename="../src/alarm.cc" line="111"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="../src/alarm.cc" line="102"/>
+        <location filename="../src/alarm.cc" line="111"/>
         <source>QT4 alarm utility</source>
         <translation>Herramienta de alarma QT</translation>
+    </message>
+    <message>
+        <location filename="../src/alarm.cc" line="145"/>
+        <source>The alarm is still running, do you want to exit anyway?</source>
+        <translation>La alarma está ejecutándose, ¿deseas salir de cualquier forma?</translation>
     </message>
 </context>
 <context>

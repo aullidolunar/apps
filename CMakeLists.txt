@@ -20,9 +20,9 @@ set (_PT "qt4")
 # package name
 set (_PN "alarm")
 # package version
-set (_PV "1.0")
+set (_PV "2.0")
 # package rev number
-set (_PR "6")
+set (_PR "0")
 # package long name
 set (_PLN "${_PT}-${_PN}-${_PV}")
 # package long version 
