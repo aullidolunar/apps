@@ -92,7 +92,7 @@ void AlarmUI::toggleui (bool _state) {
 		qDebug () << "You must see msg";
 	}
 	if (use_notify) {
-		tray_icon->showMessage (PACKAGE_STRING, QString ("%1 %2").arg(tr("A Qt alarm has")).arg(_state ? tr("started") : tr("stopped")), QSystemTrayIcon::Information);
+		tray_icon->showMessage (windowTitle(), QString ("%1 %2").arg(tr("A Qt alarm has")).arg(_state ? tr("started") : tr("stopped")), QSystemTrayIcon::Information);
 	}
 }
 
@@ -108,7 +108,7 @@ void AlarmUI::onPref () {
 }
 
 void AlarmUI::onAbout () {
-	QMessageBox::about (this, QString("%1 %2").arg(tr("About")).arg(PACKAGE_STRING_LONG), tr("QT4 alarm utility"));
+	QMessageBox::about (this, QString("%1 %2").arg(tr("About")).arg(windowTitle()), tr("QT4 alarm utility"));
 }
 
 void AlarmUI::Centre () {
@@ -146,11 +146,10 @@ void AlarmUI::closeEvent (QCloseEvent* event) {
 		if (ret == QMessageBox::Yes) {
 			qDebug() << "Here, right";
 			m_timer->stop ();
-			QApplication::quit();
+			event->accept();
 		} else {
 			event->ignore ();
 		}
-		event->ignore ();
 	} else {
 		event->accept();
 	}
