@@ -1,4 +1,4 @@
-qt-alarm
+qt-alarm - version 2.0 revison 0
 
 It's a simple qt4 alarm utility.
 
