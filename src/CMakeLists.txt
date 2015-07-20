@@ -4,7 +4,7 @@
 set (_SOURCES pref.cc alarm.cc main.cc)
 
 # headers
-set (_HEADERS pref.hh alarm.hh)
+set (_HEADERS alarm.hh pref.hh)
 
 find_package (Qt4 4.6 COMPONENTS QtCore QtGui Phonon REQUIRED)
 include (${QT_USE_FILE})
@@ -17,6 +17,11 @@ qt4_wrap_cpp (_MOC ${_HEADERS})
 if (EXISTS "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.ui")
 	qt4_wrap_ui (_UIFILE "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.ui")
 	set (OTHER_QT_SOURCES "${OTHER_QT_SOURCES}" ${_UIFILE})
+endif ()
+
+if (EXISTS "${PROJECT_SOURCE_DIR}/data/pref.ui")
+	qt4_wrap_ui (_PREFFILE "${PROJECT_SOURCE_DIR}/data/pref.ui")
+	set (OTHER_QT_SOURCES "${OTHER_QT_SOURCES}" ${_PREFFILE})
 endif ()
 
 if (EXISTS "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.qrc")
@@ -38,7 +43,7 @@ endif ()
 
 # this one is for phonon on linux, at least in archlinux
 if (UNIX)
-	include_directories ("/usr/include/qt4/KDE" "${PROJECT_BINARY_DIR}/src")
+	include_directories ("/usr/include/qt4/KDE")
 endif ()
 
 # target creation
