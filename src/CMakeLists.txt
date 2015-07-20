@@ -38,7 +38,7 @@ endif ()
 
 # this one is for phonon on linux, at least in archlinux
 if (UNIX)
-	include_directories ("/usr/include/qt4/KDE")
+	include_directories ("/usr/include/qt4/KDE" "${PROJECT_BINARY_DIR}/src")
 endif ()
 
 # target creation
