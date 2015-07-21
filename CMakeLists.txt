@@ -9,6 +9,7 @@
 # cmake -DENABLE_MAINTAINER=ON -DENABLE_DEBUG=ON -DCMAKE_INSTALL_PREFIX= ..
 # Windows 
 # cmake -DENABLE_MAINTAINER=ON -DENABLE_DEBUG=ON -DCMAKE_INSTALL_PREFIX= ..
+# cmake -DENABLE_MAINTAINER=ON -DENABLE_DEBUG=ON ..
 
 # Tell not to build from source directory
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
@@ -20,9 +21,9 @@ set (_PT "qt4")
 # package name
 set (_PN "alarm")
 # package version
-set (_PV "2.0")
+set (_PV "3.0")
 # package rev number
-set (_PR "3")
+set (_PR "0")
 # package long name
 set (_PLN "${_PT}-${_PN}-${_PV}")
 # package long version 
@@ -103,6 +104,9 @@ if (EXISTS "${PROJECT_SOURCE_DIR}/src/config.h.in")
 	configure_file ("${PROJECT_SOURCE_DIR}/src/config.h.in" "${PROJECT_BINARY_DIR}/config.h")
 	add_definitions (-DHAVE_CONFIG_H)
 endif ()
+
+find_package (Qt4 4.6 COMPONENTS QtCore QtGui Phonon REQUIRED)
+include (${QT_USE_FILE})
 
 if (EXISTS "${PROJECT_SOURCE_DIR}/data/CMakeLists.txt")
 	add_subdirectory (data)

@@ -8,5 +8,6 @@
     <file alias="stop">stop.png</file>
     <file alias="start">start.png</file>
     <file alias="main">alarm.ico</file>
+    <file alias="sound">alarm.wav</file>
   </qresource>
 </RCC>

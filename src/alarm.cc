@@ -4,6 +4,12 @@ AlarmUI::AlarmUI (QWidget *parent) :
 	QMainWindow (parent), ui (new Ui::MainWindow), pref (new PrefDialog (this)),
 	m_timer (new QTimer(this))
 {
+	/* qt translations */
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qApp->installTranslator (&qtTranslator);
+	/* project translations */
+	translator.load (QLocale::system().name(), ":/locales");
+	qApp->installTranslator (&translator);
 	/* init values */
 	timeout = 1;
 	sec = 0;
@@ -40,6 +46,9 @@ AlarmUI::~AlarmUI () {
 	delete ui;
 }
 
+void AlarmUI::localeMe () {
+}
+
 void AlarmUI::tick() {
 	sec++;
 	if (sec == 60) {
@@ -52,7 +61,10 @@ void AlarmUI::tick() {
 		showNormal ();
 		if (use_sound) {
 			qDebug() << "playing";
-			m_sound->enqueue (QUrl::fromLocalFile(PACKAGE_SOUND));
+			//m_sound->enqueue (QUrl::fromLocalFile(PACKAGE_SOUND));
+			//m_sound->setCurrentSource(Phonon::MediaSource(":/sound"));
+			QUrl qUrl("qrc:/sound");
+			m_sound->setCurrentSource (qUrl);
 			m_sound->play();
 		}
 	}
@@ -104,6 +116,14 @@ void AlarmUI::onPref () {
 		use_sound = pref->get_sound ();
 		use_reset = pref->get_reset ();
 		updateTimeLabel ();
+		QString itemData = pref->get_lang_data().toString();
+		if (itemData != "0") {
+			translator.load (itemData, ":/locales");
+			qtTranslator.load("qt_" + itemData, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+			qApp->installTranslator (&qtTranslator);
+			qApp->installTranslator (&translator);
+			ui->retranslateUi (this);
+		}
 	}
 }
 

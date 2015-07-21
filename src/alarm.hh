@@ -18,6 +18,7 @@
 #include <QDesktopServices>
 #include <QSystemTrayIcon>
 #include <Phonon/MediaObject>
+#include <Phonon/MediaSource>
 #include <QTimer>
 #include "pref.hh"
 
@@ -43,6 +44,8 @@ Q_OBJECT
 		bool use_reset;
 		int sec;
 		int min;
+		QTranslator translator;
+		QTranslator qtTranslator;;
 	public:
 		AlarmUI (QWidget *parent = 0);
 		virtual ~AlarmUI ();
@@ -50,6 +53,7 @@ Q_OBJECT
 		void Centre ();
 		void toggleui (bool);
 		void updateTimeLabel ();
+		void localeMe ();
 		virtual void changeEvent (QEvent *);
 		virtual void closeEvent (QCloseEvent *);
 	protected slots:

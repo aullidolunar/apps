@@ -37,4 +37,6 @@ if (EXISTS "${RESOURCE_FILE_IN}" AND WIN32)
 	endif ()
 endif ()
 
-install (FILES "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.mp3" DESTINATION "share/${PROJECT_NAME}")
+install (FILES "${PROJECT_SOURCE_DIR}/data/${PROJECT_NAME}.ogg" DESTINATION "share/${PROJECT_NAME}")
+
+# EOF: ~

@@ -24,6 +24,7 @@ class PrefDialog : public QDialog
 		bool get_notify () const;
 		bool get_sound () const;
 		bool get_reset () const;
+		QVariant get_lang_data () const;
 		virtual ~PrefDialog ();
 };
 

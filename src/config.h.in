@@ -23,6 +23,6 @@
 // data
 #define PACKAGE_ICON				"@DATA_DIR@/@PROJECT_NAME@.png"
 #define PACKAGE_ICO					"@DATA_DIR@/@PROJECT_NAME@.ico"
-#define PACKAGE_SOUND				"@DATA_DIR@/@PROJECT_NAME@.mp3"
+#define PACKAGE_SOUND				"@DATA_DIR@/@PROJECT_NAME@.ogg"
 
 #endif
