@@ -1,16 +1,11 @@
 #include "alarm.hh"
 
-AlarmUI::AlarmUI (QWidget *parent) :
+AlarmUI::AlarmUI (QTranslator *qtTrans, QTranslator *appTrans, QWidget *parent) :
 	QMainWindow (parent), ui (new Ui::MainWindow), pref (new PrefDialog (this)),
-	m_timer (new QTimer(this))
+	m_timer (new QTimer(this)), m_qt_trans(qtTrans), m_pro_trans(appTrans)
 {
-	/* qt translations */
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    qApp->installTranslator (&qtTranslator);
-	/* project translations */
-	translator.load (QLocale::system().name(), ":/locales");
-	qApp->installTranslator (&translator);
 	/* init values */
+	m_lang_index = 0;
 	timeout = 1;
 	sec = 0;
 	min = 0;
@@ -22,7 +17,18 @@ AlarmUI::AlarmUI (QWidget *parent) :
 	/* begin ui */
 	ui->setupUi (this);
 	setWindowTitle (PACKAGE_STRING_LONG);
-	tray_icon = new QSystemTrayIcon (QIcon(":/main"), this);
+#ifdef WIN32
+	HWND hWnd = winId();
+	HINSTANCE hInstance = reinterpret_cast<HINSTANCE>(::GetWindowLongPtr(hWnd, GWLP_HINSTANCE));
+	HICON hIcon = reinterpret_cast<HICON>(::LoadImage(hInstance, L"app_icon", IMAGE_ICON, 0, 0, LR_DEFAULTSIZE));
+	QPixmap pixmap = QPixmap::fromWinHICON (hIcon);
+#else
+	QPixmap pixmap (PACKAGE_ICON);
+#endif
+	QIcon icon (pixmap);
+	setWindowIcon (icon);
+	/* rest of the widgets */
+	tray_icon = new QSystemTrayIcon (icon, this);
 	tray_icon->show ();
 	tray_icon->setToolTip (PACKAGE_STRING);
 
@@ -61,10 +67,7 @@ void AlarmUI::tick() {
 		showNormal ();
 		if (use_sound) {
 			qDebug() << "playing";
-			//m_sound->enqueue (QUrl::fromLocalFile(PACKAGE_SOUND));
-			//m_sound->setCurrentSource(Phonon::MediaSource(":/sound"));
-			QUrl qUrl("qrc:/sound");
-			m_sound->setCurrentSource (qUrl);
+			m_sound->enqueue (QUrl::fromLocalFile(PACKAGE_SOUND));
 			m_sound->play();
 		}
 	}
@@ -109,20 +112,22 @@ void AlarmUI::toggleui (bool _state) {
 }
 
 void AlarmUI::onPref () {
-	pref->loadValues (timeout, use_notify, use_sound, use_reset);
+	pref->loadValues (timeout, use_notify, use_sound, use_reset, m_lang_index);
 	if (pref->exec()) {
 		timeout = pref->get_timeout ();
 		use_notify = pref->get_notify ();
 		use_sound = pref->get_sound ();
 		use_reset = pref->get_reset ();
+		m_lang_index = pref->get_lang_pos ();
 		updateTimeLabel ();
 		QString itemData = pref->get_lang_data().toString();
 		if (itemData != "0") {
-			translator.load (itemData, ":/locales");
-			qtTranslator.load("qt_" + itemData, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-			qApp->installTranslator (&qtTranslator);
-			qApp->installTranslator (&translator);
+			m_pro_trans->load (itemData, ":/locales");
+			m_qt_trans->load ("qt_" + itemData, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+			qApp->installTranslator (m_pro_trans);
+			qApp->installTranslator (m_qt_trans);
 			ui->retranslateUi (this);
+			pref->retranslateMe ();
 		}
 	}
 }

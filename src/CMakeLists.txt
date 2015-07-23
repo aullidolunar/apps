@@ -64,7 +64,7 @@ if (EXISTS "${RESOURCE_FILE_OUT}")
 		COMMENT "Compiling resource file"
 	)
 	add_custom_target (resourcefile DEPENDS ${RESOURCE_OBJECT})
-	# set_source_files_properties (${RESOURCE_OBJECT} PROPERTIES EXTERNAL_OBJECT true GENERATED true)
+	set_source_files_properties (${RESOURCE_OBJECT} PROPERTIES EXTERNAL_OBJECT true GENERATED true)
 	set (_SOURCES ${_SOURCES} ${RESOURCE_OBJECT})
 endif ()
 

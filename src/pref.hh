@@ -19,13 +19,17 @@ class PrefDialog : public QDialog
 		Ui::Dialog *ui;
 	public:
 		PrefDialog (QWidget *parent = 0);
-		void loadValues (int, bool, bool, bool);
+		void retranslateMe ();
+		void loadValues (int, bool, bool, bool, int);
 		int get_timeout () const;
 		bool get_notify () const;
 		bool get_sound () const;
 		bool get_reset () const;
+		int get_lang_pos () const;
 		QVariant get_lang_data () const;
 		virtual ~PrefDialog ();
+	protected:
+		void translate_combo ();
 };
 
 #endif

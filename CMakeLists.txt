@@ -10,6 +10,7 @@
 # Windows 
 # cmake -DENABLE_MAINTAINER=ON -DENABLE_DEBUG=ON -DCMAKE_INSTALL_PREFIX= ..
 # cmake -DENABLE_MAINTAINER=ON -DENABLE_DEBUG=ON ..
+# cmake -DENABLE_MAINTAINER=ON ..
 
 # Tell not to build from source directory
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
@@ -23,7 +24,7 @@ set (_PN "alarm")
 # package version
 set (_PV "3.0")
 # package rev number
-set (_PR "0")
+set (_PR "2")
 # package long name
 set (_PLN "${_PT}-${_PN}-${_PV}")
 # package long version 

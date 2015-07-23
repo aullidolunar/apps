@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string notr="true">MainWindow</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="alarm.qrc">
-    <normaloff>:/main</normaloff>:/main</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0" colspan="3">

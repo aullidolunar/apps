@@ -20,7 +20,12 @@
 #include <Phonon/MediaObject>
 #include <Phonon/MediaSource>
 #include <QTimer>
+#include <QUrl>
 #include "pref.hh"
+
+#ifdef WIN32
+#include <windows.h>
+#endif
 
 #ifdef ENABLE_DEBUG
 	#include <QDebug>
@@ -44,10 +49,11 @@ Q_OBJECT
 		bool use_reset;
 		int sec;
 		int min;
-		QTranslator translator;
-		QTranslator qtTranslator;;
+		int m_lang_index;
+		QTranslator *m_qt_trans;
+		QTranslator *m_pro_trans;
 	public:
-		AlarmUI (QWidget *parent = 0);
+		AlarmUI (QTranslator *, QTranslator *, QWidget *parent = 0);
 		virtual ~AlarmUI ();
 	protected:
 		void Centre ();
