@@ -10,9 +10,11 @@ int main (int argc, char *argv[]) {
 	QTranslator proTranslator;
 	proTranslator.load (QLocale::system().name(), ":/locales");
 	QApplication app(argc, argv);
+	app.setQuitOnLastWindowClosed  (false);
 	app.installTranslator (&qtTranslator);
 	app.installTranslator (&proTranslator);
-	AlarmUI gui (&qtTranslator, &proTranslator);
+	QWidget parent;
+	AlarmUI gui (&qtTranslator, &proTranslator, &parent);
 	gui.show ();
 	return app.exec();
 }

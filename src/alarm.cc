@@ -1,7 +1,7 @@
 #include "alarm.hh"
 
 AlarmUI::AlarmUI (QTranslator *qtTrans, QTranslator *appTrans, QWidget *parent) :
-	QMainWindow (parent), ui (new Ui::MainWindow), pref (new PrefDialog (this)),
+	QMainWindow (parent), ui (new Ui::MainWindow), //pref (new PrefDialog (this)),
 	m_timer (new QTimer(this)), m_qt_trans(qtTrans), m_pro_trans(appTrans)
 {
 	/* init values */
@@ -48,7 +48,7 @@ AlarmUI::~AlarmUI () {
 	m_sound->clear();
 	delete m_sound;
 	delete m_timer;
-	delete pref;
+	//delete pref;
 	delete ui;
 }
 
@@ -112,22 +112,23 @@ void AlarmUI::toggleui (bool _state) {
 }
 
 void AlarmUI::onPref () {
-	pref->loadValues (timeout, use_notify, use_sound, use_reset, m_lang_index);
-	if (pref->exec()) {
-		timeout = pref->get_timeout ();
-		use_notify = pref->get_notify ();
-		use_sound = pref->get_sound ();
-		use_reset = pref->get_reset ();
-		m_lang_index = pref->get_lang_pos ();
+	PrefDialog pref(this);
+	pref.loadValues (timeout, use_notify, use_sound, use_reset, m_lang_index);
+	if (pref.exec()) {
+		timeout = pref.get_timeout ();
+		use_notify = pref.get_notify ();
+		use_sound = pref.get_sound ();
+		use_reset = pref.get_reset ();
+		m_lang_index = pref.get_lang_pos ();
 		updateTimeLabel ();
-		QString itemData = pref->get_lang_data().toString();
+		QString itemData = pref.get_lang_data().toString();
 		if (itemData != "0") {
 			m_pro_trans->load (itemData, ":/locales");
 			m_qt_trans->load ("qt_" + itemData, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 			qApp->installTranslator (m_pro_trans);
 			qApp->installTranslator (m_qt_trans);
 			ui->retranslateUi (this);
-			pref->retranslateMe ();
+			pref.retranslateMe ();
 		}
 	}
 }
@@ -171,11 +172,13 @@ void AlarmUI::closeEvent (QCloseEvent* event) {
 		if (ret == QMessageBox::Yes) {
 			qDebug() << "Here, right";
 			m_timer->stop ();
+			qApp->setQuitOnLastWindowClosed (true);
 			event->accept();
 		} else {
 			event->ignore ();
 		}
 	} else {
+		qApp->setQuitOnLastWindowClosed (true);
 		event->accept();
 	}
 }

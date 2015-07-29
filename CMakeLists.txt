@@ -24,7 +24,7 @@ set (_PN "alarm")
 # package version
 set (_PV "3.0")
 # package rev number
-set (_PR "2")
+set (_PR "3")
 # package long name
 set (_PLN "${_PT}-${_PN}-${_PV}")
 # package long version 

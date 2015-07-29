@@ -41,7 +41,7 @@ Q_OBJECT
 		Ui::MainWindow *ui;
 		QSystemTrayIcon *tray_icon;
 		Phonon::MediaObject *m_sound;
-		PrefDialog *pref;
+		//PrefDialog *pref;
 		QTimer *m_timer;
 		int timeout;
 		bool use_notify;
