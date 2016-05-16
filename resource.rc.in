@@ -1,0 +1,6 @@
+#include <windows.h>
+
+aaaaa_icon ICON "Alarma.ico"
+blink_icon ICON "blink.ico"
+
+1 RT_MANIFEST "xp.xml"

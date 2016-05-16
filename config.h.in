@@ -1,0 +1,23 @@
+﻿// Generated from config.h.in using cmake version @CMAKE_VERSION@
+#ifndef CONFIG_H_INCLUDED
+#define CONFIG_H_INCLUDED
+
+// build stuff
+#define PREFIX						"@CMAKE_INSTALL_PREFIX@"
+#define PROJECT_INSTALL_DIR			"@_PROJECT_INSTALL_DIR@"
+#define DATA_DIR					"@DATA_DIR@"
+
+// project stuff
+#define PACKAGE_NAME				"@PROJECT_NAME@"
+#define PACKAGE_VERSION 			"@PROJECT_VERSION@"
+#define PACKAGE_STRING 				"@PROJECT_NAME@ @PROJECT_VERSION@"
+#define PACKAGE_BUGREPORT			"@EMAIL@"
+#define PACKAGE_DSC					"@_PD@"
+#define SELFIE						"@AUTHOR@&lt;@EMAIL@&gt;"
+
+// data
+#define PACKAGE_ICON_ICO			"@DATA_DIR@/@PROJECT_NAME@.ico"
+#define BLINK_ICO					"@DATA_DIR@/blink.ico"
+#define ALARM_SOUND					"@DATA_DIR@/@PROJECT_NAME@.ogg"
+
+#endif
