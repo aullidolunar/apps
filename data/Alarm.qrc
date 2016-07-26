@@ -1,0 +1,8 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file alias="blink">blink.png</file>
+    <file alias="main">Alarm.png</file>
+    <file alias="sound">Alarm.ogg</file>
+</qresource>
+</RCC>
