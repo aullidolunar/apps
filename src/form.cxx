@@ -89,12 +89,13 @@ MyForm::MyForm (QWidget *parent) :
 	// window stuff
 	setWindowTitle (PACKAGE_STRING);
 	setWindowIcon (QIcon(":main"));
+	centerMainWindow ();
 	// tray stuff
 	m_ticon.setToplevel (this);
 	m_ticon.setAlarmMenu (ui.menuAlarm);
 	m_ticon.setIcon (windowIcon ());
 	m_ticon.show ();
-	
+	// phonon stuff
 	m_mobj = Phonon::createPlayer(Phonon::MusicCategory);
 	QFile *ogg_file = new QFile (":sound", this);
 	m_mobj->setCurrentSource (Phonon::MediaSource(ogg_file));
@@ -106,6 +107,13 @@ MyForm::MyForm (QWidget *parent) :
 	connect (ui.actionAbout_qt, SIGNAL(triggered()), this, SLOT(cb_aboutqt_activate()));
 	connect (&m_timer, SIGNAL(timeout()), this, SLOT(cb_tick()));
 	connect (&m_ticon, SIGNAL (trayClicked()), this, SLOT (cb_traptrayClicked ()));
+}
+
+void MyForm::centerMainWindow () {
+	QRect screenGeometry = QApplication::desktop()->screenGeometry();
+	int x = (screenGeometry.width() - width()) / 2;
+	int y = (screenGeometry.height() - height()) / 2;
+	move (x, y);
 }
 
 void MyForm::cb_start_activate () {

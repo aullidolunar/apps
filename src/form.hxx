@@ -62,6 +62,7 @@ protected:
 	virtual void changeEvent (QEvent *);
 	virtual void closeEvent (QCloseEvent *);
 	void sendSoundAlarm (bool checked = false);
+	void centerMainWindow ();
 protected slots:
 	void cb_start_activate ();
 	void cb_exit_activate ();
