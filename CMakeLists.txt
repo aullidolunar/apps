@@ -87,7 +87,7 @@ else ()
 		list (APPEND QT_LIBS ${Qt5Widgets_LIBRARIES} ${PHONON_LIBRARY})
 		# pack the tools
 		set (LRELEASE_EXECUTABLE ${Qt5_LRELEASE_EXECUTABLE})
-		set (RCC_EXECUTABLE ${Qt5Core_RCC_EXECUTABLE}) # this fails
+		set (RCC_EXECUTABLE ${Qt5Core_RCC_EXECUTABLE})
 	endif ()
 	# create proper binary name
 	set (BIN_QT_NAME "${PROJECT_NAME}Qt${QT_VERSION}")
